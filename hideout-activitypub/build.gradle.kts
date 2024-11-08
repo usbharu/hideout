@@ -16,6 +16,8 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     detektPlugins(libs.detekt.formatting)
+    implementation("dev.usbharu:hideout-core:0.0.1")
+    implementation(libs.bundles.jackson)
 }
 
 tasks.test {
