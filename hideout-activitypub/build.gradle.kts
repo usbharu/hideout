@@ -4,6 +4,12 @@ plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.detekt)
     alias(libs.plugins.kover)
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.kotlin.spring)
+}
+
+apply {
+    plugin("io.spring.dependency-management")
 }
 
 group = "dev.usbharu"
@@ -17,6 +23,8 @@ dependencies {
     testImplementation(kotlin("test"))
     detektPlugins(libs.detekt.formatting)
     implementation("dev.usbharu:hideout-core:0.0.1")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation(libs.bundles.jackson)
 }
 

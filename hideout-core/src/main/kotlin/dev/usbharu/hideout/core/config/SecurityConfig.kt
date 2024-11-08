@@ -75,7 +75,7 @@ class SecurityConfig {
     }
 
     @Bean
-    @Order(3)
+    @Order(6)
     fun httpSecurityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http {
             authorizeHttpRequests {
