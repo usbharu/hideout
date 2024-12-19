@@ -49,27 +49,7 @@ kotlin {
 
 repositories {
     mavenCentral()
-    maven {
-        url = uri("https://git.usbharu.dev/api/packages/usbharu/maven")
-    }
-    maven {
-        name = "GitHubPackages"
-        url = uri("https://maven.pkg.github.com/usbharu/http-signature")
-        credentials {
 
-            username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-        }
-    }
-    maven {
-        name = "GitHubPackages2"
-        url = uri("https://maven.pkg.github.com/multim-dev/emoji-kt")
-        credentials {
-
-            username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-            password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
-        }
-    }
 }
 
 
@@ -141,7 +121,7 @@ dependencies {
 
 detekt {
     parallel = true
-    config.setFrom(files("../detekt.yml"))
+    config.setFrom(files("$rootDir/../detekt.yml"))
     buildUponDefaultConfig = true
     basePath = "${rootDir.absolutePath}/src/main/kotlin"
     autoCorrect = true
