@@ -24,9 +24,7 @@ jobs:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     outputs:
-      core: ${{ steps.filter.outputs.core }}
-      mastodon: ${{ steps.filter.outputs.mastodon }}
-      activitypub: ${{ steps.filter.outputs.ap }}
+      hideout: ${{ steps.filter.outputs.hideout }}
       owl: ${{ steps.filter.outputs.owl }}
     steps:
       - name: Checkout
