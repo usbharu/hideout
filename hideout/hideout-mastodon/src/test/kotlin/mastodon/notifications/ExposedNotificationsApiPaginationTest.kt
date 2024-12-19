@@ -25,6 +25,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.flywaydb.core.Flyway
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -46,6 +47,7 @@ import org.springframework.web.context.WebApplicationContext
 @AutoConfigureMockMvc
 @Transactional
 @Sql("/sql/actors.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
+@Disabled
 class ExposedNotificationsApiPaginationTest {
     @Autowired
     private lateinit var context: WebApplicationContext

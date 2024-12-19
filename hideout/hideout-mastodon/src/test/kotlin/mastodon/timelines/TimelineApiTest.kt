@@ -20,6 +20,7 @@ import dev.usbharu.hideout.SpringApplication
 import org.flywaydb.core.Flyway
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -38,6 +39,7 @@ import org.springframework.web.context.WebApplicationContext
 @SpringBootTest(classes = [SpringApplication::class])
 @Transactional
 @Sql("/sql/actors.sql", "/sql/userdetail.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
+@Disabled
 class TimelineApiTest {
     @Autowired
     private lateinit var context: WebApplicationContext

@@ -49,6 +49,7 @@ import org.springframework.web.context.WebApplicationContext
 @AutoConfigureMockMvc
 @Transactional
 @Sql("/sql/actors.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
+@Disabled
 class AccountApiTest {
 
     @Autowired

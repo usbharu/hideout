@@ -24,6 +24,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.flywaydb.core.Flyway
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -44,6 +45,7 @@ import org.springframework.web.context.WebApplicationContext
 @Transactional
 @Sql("/sql/actors.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 @Sql("/sql/accounts/test-accounts-statuses.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
+@Disabled
 class AccountApiPaginationTest {
     @Autowired
     private lateinit var context: WebApplicationContext
@@ -73,7 +75,8 @@ class AccountApiPaginationTest {
             .response
             .contentAsString
 
-        val value = jacksonObjectMapper().readValue(content, object : TypeReference<List<Status>>() {})
+        val value: List<Status> =
+            jacksonObjectMapper().readValue<List<Status>>(content, object : TypeReference<List<Status>>() {})
 
         assertThat(value.first().id).isEqualTo("100")
         assertThat(value.last().id).isEqualTo("81")

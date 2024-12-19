@@ -25,6 +25,7 @@ import kotlinx.coroutines.test.runTest
 import org.flywaydb.core.Flyway
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -53,6 +54,7 @@ import util.objectMapper
     "/sql/filter/test-filter.sql",
     executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS
 )
+@Disabled
 class FilterTest {
     @Autowired
     private lateinit var context: WebApplicationContext

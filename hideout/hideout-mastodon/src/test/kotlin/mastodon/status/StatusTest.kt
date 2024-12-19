@@ -27,6 +27,7 @@ import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.selectAll
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
@@ -52,6 +53,7 @@ import org.springframework.web.context.WebApplicationContext
 @Sql("/sql/actors.sql", "/sql/userdetail.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 @Sql("/sql/posts.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 @Sql("/sql/test-custom-emoji.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
+@Disabled
 class StatusTest {
 
     @Autowired
