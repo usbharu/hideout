@@ -31,7 +31,7 @@ services:
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.17.24
+    image: docker.elastic.co/kibana/kibana:7.17.26
     container_name: kibana
     ports:
       - "5601:5601"
