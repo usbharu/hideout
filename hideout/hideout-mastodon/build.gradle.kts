@@ -15,8 +15,6 @@ apply {
     plugin("io.spring.dependency-management")
 }
 
-group = "dev.usbharu"
-version = "1.0-SNAPSHOT"
 
 dependencies {
     detektPlugins(libs.detekt.formatting)
@@ -24,7 +22,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 
-    implementation("dev.usbharu:hideout-core:0.0.1")
+    implementation(project(":hideout-core"))
 
     implementation(libs.jackson.databind)
     implementation(libs.jackson.module.kotlin)
@@ -81,38 +79,11 @@ tasks {
     }
 }
 
-kotlin {
-    jvmToolchain(21)
-}
 
 sourceSets.main {
     kotlin.srcDirs(
         "$buildDir/generated/sources/mastodon/src/main/kotlin"
     )
-}
-
-detekt {
-    parallel = true
-    config.setFrom(files("$rootDir/../detekt.yml"))
-    buildUponDefaultConfig = true
-    basePath = "${rootDir.absolutePath}/src/main/kotlin"
-    autoCorrect = true
-}
-
-configurations.matching { it.name == "detekt" }.all {
-    resolutionStrategy.eachDependency {
-        if (requested.group == "org.jetbrains.kotlin") {
-            useVersion(io.gitlab.arturbosch.detekt.getSupportedKotlinVersion())
-        }
-    }
-}
-
-project.gradle.taskGraph.whenReady {
-    if (this.hasTask(":koverGenerateArtifact")) {
-        val task = this.allTasks.find { it.name == "test" }
-        val verificationTask = task as VerificationTask
-        verificationTask.ignoreFailures = true
-    }
 }
 
 kover {
@@ -152,21 +123,4 @@ kover {
         }
 
     }
-}
-
-tasks.withType<io.gitlab.arturbosch.detekt.Detekt> {
-    exclude("**/generated/**")
-    doFirst {
-
-    }
-    setSource("src/main/kotlin")
-    exclude("build/")
-}
-
-tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
-    exclude("**/org/koin/ksp/generated/**", "**/generated/**")
-}
-
-tasks.withType<io.gitlab.arturbosch.detekt.DetektCreateBaselineTask>().configureEach {
-    exclude("**/org/koin/ksp/generated/**", "**/generated/**")
 }

@@ -35,11 +35,8 @@ apply {
     plugin("io.spring.dependency-management")
 }
 
-group = "dev.usbharu"
-version = "0.0.1"
 
 kotlin {
-    jvmToolchain(21)
     compilerOptions {
         freeCompilerArgs.add("-Xjsr305=strict")
         jvmTarget = JvmTarget.JVM_21
@@ -119,41 +116,13 @@ dependencies {
     testImplementation("com.ninja-squad:DbSetup-kotlin:2.1.0")
 }
 
-detekt {
-    parallel = true
-    config.setFrom(files("$rootDir/../detekt.yml"))
-    buildUponDefaultConfig = true
-    basePath = "${rootDir.absolutePath}/src/main/kotlin"
-    autoCorrect = true
-}
-
 configurations {
-    matching { it.name == "detekt" }.all {
-        resolutionStrategy.eachDependency {
-            if (requested.group == "org.jetbrains.kotlin") {
-                useVersion(io.gitlab.arturbosch.detekt.getSupportedKotlinVersion())
-            }
-        }
-    }
     all {
         exclude("org.apache.logging.log4j", "log4j-slf4j2-impl")
     }
 }
 
 tasks {
-    withType<io.gitlab.arturbosch.detekt.Detekt> {
-        exclude("**/generated/**")
-        setSource("src/main/kotlin")
-        exclude("build/")
-        configureEach {
-            exclude("**/org/koin/ksp/generated/**", "**/generated/**")
-        }
-    }
-    withType<io.gitlab.arturbosch.detekt.DetektCreateBaselineTask>() {
-        configureEach {
-            exclude("**/org/koin/ksp/generated/**", "**/generated/**")
-        }
-    }
     withType<Test> {
         useJUnitPlatform()
         doFirst {
@@ -172,13 +141,6 @@ tasks {
 }
 
 
-project.gradle.taskGraph.whenReady {
-    if (this.hasTask(":koverGenerateArtifact")) {
-        val task = this.allTasks.find { it.name == "test" }
-        val verificationTask = task as VerificationTask
-        verificationTask.ignoreFailures = true
-    }
-}
 
 kover {
     currentProject {
@@ -215,12 +177,6 @@ kover {
                 packages("org.jetbrains")
             }
         }
-
-    }
-}
-
-springBoot {
-    buildInfo {
 
     }
 }
