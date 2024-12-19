@@ -124,3 +124,7 @@ kover {
 
     }
 }
+
+springBoot {
+    buildInfo()
+}
