@@ -117,7 +117,7 @@ jobs:
 
 
   lint:
-    if: always() && (needs.change.outputs.core == 'true' || needs.change.outputs.activitypub == 'true' || needs.change.outputs.mastodon == 'true' || needs.change.outputs.owl == 'true')
+    if: always() && (needs.change.outputs.hideout == 'true' || needs.change.outputs.owl == 'true')
     needs:
       - change
       - hideout-setup
