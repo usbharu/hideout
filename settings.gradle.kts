@@ -20,6 +20,7 @@ plugins {
 rootProject.name = "hideout-root"
 
 includeBuild("hideout")
+includeBuild("owl")
 
 dependencyResolutionManagement {
     repositories {
