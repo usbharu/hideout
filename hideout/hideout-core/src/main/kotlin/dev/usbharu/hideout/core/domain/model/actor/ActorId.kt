@@ -14,22 +14,15 @@
  * limitations under the License.
  */
 
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
-}
-rootProject.name = "hideout-root"
+package dev.usbharu.hideout.core.domain.model.actor
 
-includeBuild("hideout")
-
-dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
+@JvmInline
+value class ActorId(val id: Long) {
+    init {
+        require(0 <= id)
     }
 
-    versionCatalogs {
-        create("libs") {
-            from(files("libs.versions.toml"))
-        }
+    companion object {
+        val ghost = ActorId(0L)
     }
 }
-

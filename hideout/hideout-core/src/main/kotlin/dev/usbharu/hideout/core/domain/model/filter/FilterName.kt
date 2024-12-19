@@ -14,22 +14,30 @@
  * limitations under the License.
  */
 
-plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
-}
-rootProject.name = "hideout-root"
+package dev.usbharu.hideout.core.domain.model.filter
 
-includeBuild("hideout")
+class FilterName(name: String) {
 
-dependencyResolutionManagement {
-    repositories {
-        mavenCentral()
+    val name = name.take(LENGTH)
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as FilterName
+
+        return name == other.name
     }
 
-    versionCatalogs {
-        create("libs") {
-            from(files("libs.versions.toml"))
-        }
+    override fun hashCode(): Int = name.hashCode()
+
+    override fun toString(): String {
+        return "FilterName(" +
+                "name='$name'" +
+                ")"
+    }
+
+    companion object {
+        const val LENGTH = 300
     }
 }
-
