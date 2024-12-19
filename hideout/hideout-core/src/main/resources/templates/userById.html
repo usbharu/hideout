@@ -1,0 +1,64 @@
+<!--
+  ~ Copyright (C) 2024 usbharu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE html>
+<html lang="en" th:replace="~{layout::layout(${ogp}, ~{::#content})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User - hideout</title>
+</head>
+<body>
+<div id="content">
+    <div>
+        <img alt="" height="150px" th:src="${user.iconUrl}" width="150px">
+        <img alt="" height="150px" th:src="${user.bannerURL}" width="600px">
+    </div>
+    <div>
+        <th:block th:if="${user.locked}">
+            <h2 th:text="${user.screenName} + '(private)'"></h2>
+        </th:block>
+
+        <th:block th:if="!${user.locked}">
+            <h2 th:text="${user.screenName}"></h2>
+        </th:block>
+        <p th:text="'@'+${user.name} + '@' + ${user.host}"></p>
+        <th:block th:if="${relationship != null}">
+            <form method="post" th:action="@{/users/{name}/unfollow(name=${user.name+'@'+user.host})}"
+                  th:if="${relationship.following}">
+                <input type="submit" value="Unfollow">
+            </form>
+            <form method="post" th:action="@{/users/{name}/follow(name=${user.name+'@'+user.host})}"
+                  th:unless="${relationship.following}">
+                <input type="submit" value="Follow">
+            </form>
+        </th:block>
+
+    </div>
+    <div>
+        <p th:text="${user.description}"></p>
+    </div>
+    <div>
+        <p th:if="user.postsCount != null" th:text="#{user-by-id.postsCount(${user.postsCount})}">0 Posts</p>
+        <p th:if="user.followingCount != null" th:text="#{user-by-id.followingCount(${user.followingCount})}">0
+            Following</p>
+        <p th:if="user.followersCount != null" th:text="#{user-by-id.followersCount(${user.followersCount})}">0
+            Followers</p>
+    </div>
+    <div th:replace="~{fragments-timeline :: simple-timline(${userTimeline},'/users/'+${user.name}+'@'+${user.host})}"></div>
+
+</div>
+</body>
+</html>

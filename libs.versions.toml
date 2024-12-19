@@ -9,7 +9,7 @@ coroutines = "1.9.0"
 swagger = "2.2.23"
 tika = "2.9.2"
 owl = "0.0.1"
-jackson = "2.17.2"
+jackson = "2.18.1"
 protobuf = "4.28.1"
 grpc-java = "1.66.0"
 grpc-kotlin = "1.4.1"
@@ -124,10 +124,10 @@ grpc-kotlin = ["grpc-kotlin-stub", "grpc-netty", "grpc-protobuf", "protobuf-kotl
 [plugins]
 
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-spring-boot = { id = "org.springframework.boot", version = "3.3.4" }
+spring-boot = { id = "org.springframework.boot", version = "3.4.0" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version = "0.8.3" }
-openapi-generator = { id = "org.openapi.generator", version = "7.8.0" }
+openapi-generator = { id = "org.openapi.generator", version = "7.10.0" }
 license-report = { id = "com.github.jk1.dependency-license-report", version = "2.9" }
 protobuf-plugin = { id = "com.google.protobuf", version = "0.9.4" }
