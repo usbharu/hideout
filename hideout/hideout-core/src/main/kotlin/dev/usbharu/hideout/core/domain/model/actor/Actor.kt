@@ -158,34 +158,34 @@ class Actor(
 
     override fun toString(): String {
         return "Actor(" +
-                "id=$id, " +
-                "name=$name, " +
-                "domain=$domain, " +
-                "inbox=$inbox, " +
-                "outbox=$outbox, " +
-                "url=$url, " +
-                "publicKey=$publicKey, " +
-                "privateKey=$privateKey, " +
-                "createdAt=$createdAt, " +
-                "keyId=$keyId, " +
-                "followersEndpoint=$followersEndpoint, " +
-                "followingEndpoint=$followingEndpoint, " +
-                "instance=$instance, " +
-                "locked=$locked, " +
-                "followersCount=$followersCount, " +
-                "followingCount=$followingCount, " +
-                "postsCount=$postsCount, " +
-                "lastPostAt=$lastPostAt, " +
-                "lastUpdateAt=$lastUpdateAt, " +
-                "banner=$banner, " +
-                "icon=$icon, " +
-                "suspend=$suspend, " +
-                "alsoKnownAs=$alsoKnownAs, " +
-                "moveTo=$moveTo, " +
-                "emojis=$emojis, " +
-                "description=$description, " +
-                "screenName=$screenName, " +
-                "deleted=$deleted" +
-                ")"
+            "id=$id, " +
+            "name=$name, " +
+            "domain=$domain, " +
+            "inbox=$inbox, " +
+            "outbox=$outbox, " +
+            "url=$url, " +
+            "publicKey=$publicKey, " +
+            "privateKey=$privateKey, " +
+            "createdAt=$createdAt, " +
+            "keyId=$keyId, " +
+            "followersEndpoint=$followersEndpoint, " +
+            "followingEndpoint=$followingEndpoint, " +
+            "instance=$instance, " +
+            "locked=$locked, " +
+            "followersCount=$followersCount, " +
+            "followingCount=$followingCount, " +
+            "postsCount=$postsCount, " +
+            "lastPostAt=$lastPostAt, " +
+            "lastUpdateAt=$lastUpdateAt, " +
+            "banner=$banner, " +
+            "icon=$icon, " +
+            "suspend=$suspend, " +
+            "alsoKnownAs=$alsoKnownAs, " +
+            "moveTo=$moveTo, " +
+            "emojis=$emojis, " +
+            "description=$description, " +
+            "screenName=$screenName, " +
+            "deleted=$deleted" +
+            ")"
     }
 }

@@ -29,9 +29,9 @@ sealed class Emoji {
     abstract fun id(): String
     override fun toString(): String {
         return "Emoji(" +
-                "domain='$domain', " +
-                "name='$name'" +
-                ")"
+            "domain='$domain', " +
+            "name='$name'" +
+            ")"
     }
 }
 

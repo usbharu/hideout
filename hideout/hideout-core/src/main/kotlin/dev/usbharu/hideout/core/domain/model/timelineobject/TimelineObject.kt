@@ -77,9 +77,9 @@ class TimelineObject(
         lastUpdatedAt = Instant.now()
         isPureRepost =
             post.repostId != null &&
-                    post.replyId == null &&
-                    post.text.isEmpty() &&
-                    post.overview?.overview.isNullOrEmpty()
+            post.replyId == null &&
+            post.text.isEmpty() &&
+            post.overview?.overview.isNullOrEmpty()
         warnFilters = filterResults.map { TimelineObjectWarnFilter(it.filter.id, it.matchedKeyword) }
     }
 
@@ -149,9 +149,9 @@ class TimelineObject(
                 repostActorId = repost.actorId,
                 visibility = post.visibility,
                 isPureRepost = repost.mediaIds.isEmpty() &&
-                        repost.overview == null &&
-                        repost.content == PostContent.empty &&
-                        repost.replyId == null,
+                    repost.overview == null &&
+                    repost.content == PostContent.empty &&
+                    repost.replyId == null,
                 mediaIds = post.mediaIds,
                 emojiIds = post.emojiIds,
                 visibleActors = post.visibleActors.toList(),
