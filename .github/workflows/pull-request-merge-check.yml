@@ -120,9 +120,7 @@ jobs:
     if: always() && (needs.change.outputs.core == 'true' || needs.change.outputs.activitypub == 'true' || needs.change.outputs.mastodon == 'true' || needs.change.outputs.owl == 'true')
     needs:
       - change
-      - hideout-core-setup
-      - hideout-mastodon-setup
-      - hideout-activitypub-setup
+      - hideout-setup
       - owl-setup
     runs-on: ubuntu-latest
     permissions:
