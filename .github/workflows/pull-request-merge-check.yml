@@ -39,23 +39,17 @@ jobs:
         id: filter
         with:
           filters: |
-            core:
-              - 'hideout-core/**'
-              - 'libs.versions.toml'
-            ap:
-              - 'hideout-activitypub/**'
-              - 'libs.versions.toml'
-            mastodon:
-              - 'hideout-mastodon/**'
+            hideout:
+              - 'hideout/**'
               - 'libs.versions.toml'
             owl:
               - 'owl/**'
               - 'libs.versions.toml'
 
-  hideout-core-setup:
+  hideout-setup:
     needs:
       - change
-    if: github.event.pull_request.draft == false && needs.change.outputs.core == 'true'
+    if: github.event.pull_request.draft == false && needs.change.outputs.hideout == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -77,67 +71,14 @@ jobs:
         with:
           cache-read-only: false
           gradle-home-cache-cleanup: true
-
       - name: Build
-        run: ./gradlew :hideout-core:classes --no-daemon
+        run: ./gradlew :hideout:test
 
-  hideout-mastodon-setup:
-    needs:
-      - change
-    if: github.event.pull_request.draft == false && needs.change.outputs.mastodon == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: JUnit Test Report
+        uses: mikepenz/action-junit-report@v4
         with:
-          token: ${{ secrets.PAT }}
-
-      - name: Gradle Wrapper Validation
-        uses: gradle/actions/wrapper-validation@v4
-
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          cache-read-only: false
-          gradle-home-cache-cleanup: true
-
-      - name: Build
-        run: ./gradlew :hideout-mastodon:classes --no-daemon
-
-  hideout-activitypub-setup:
-    needs:
-      - change
-    if: github.event.pull_request.draft == false && needs.change.outputs.activitypub == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT }}
-
-      - name: Gradle Wrapper Validation
-        uses: gradle/actions/wrapper-validation@v4
-
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          cache-read-only: false
-          gradle-home-cache-cleanup: true
-
-      - name: Build
-        run: ./gradlew :hideout-activitypub:classes --no-daemon
+          report_paths: '**/TEST-*.xml'
+          check_name: 'hideout-core JUnit Test Report'
 
   owl-setup:
     needs:
@@ -166,154 +107,7 @@ jobs:
           gradle-home-cache-cleanup: true
 
       - name: Build
-        working-directory: owl
-        run: ./gradlew :classes --no-daemon
-
-  hideout-core-unit-test:
-    needs:
-      - hideout-core-setup
-      - change
-    if: github.event.pull_request.draft == false && needs.change.outputs.core == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT }}
-
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          cache-read-only: false
-          gradle-home-cache-cleanup: true
-
-      - name: Unit Test
-        run: ./hideout-core/gradlew :hideout-core:koverXmlReport
-
-      - name: JUnit Test Report
-        uses: mikepenz/action-junit-report@v4
-        with:
-          report_paths: '**/TEST-*.xml'
-          check_name: 'hideout-core JUnit Test Report'
-
-      - name: Upload Coverage Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: 'hideout-core.xml'
-          path: 'hideout-core/build/reports/kover/hideout-core.xml'
-
-
-  hideout-mastodon-unit-test:
-    needs:
-      - hideout-mastodon-setup
-      - change
-    if: github.event.pull_request.draft == false && needs.change.outputs.mastodon == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT }}
-
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          cache-read-only: false
-          gradle-home-cache-cleanup: true
-
-      - name: Unit Test
-        run: ./hideout-mastodon/gradlew :hideout-mastodon:koverXmlReport
-
-      - name: JUnit Test Report
-        uses: mikepenz/action-junit-report@v4
-        with:
-          report_paths: '**/TEST-*.xml'
-          check_name: 'hideout-mastodon JUnit Test Report'
-
-      - name: Upload Coverage Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: 'hideout-mastodon.xml'
-          path: 'hideout-mastodon/build/reports/kover/hideout-mastodon.xml'
-
-  hideout-activitypub-unit-test:
-    needs:
-      - hideout-activitypub-setup
-      - change
-    if: github.event.pull_request.draft == false && needs.change.outputs.activitypub == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT }}
-
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          cache-read-only: false
-          gradle-home-cache-cleanup: true
-
-      - name: Unit Test
-        run: ./hideout-activitypub/gradlew :hideout-activitypub:koverXmlReport
-
-      - name: JUnit Test Report
-        uses: mikepenz/action-junit-report@v4
-        with:
-          report_paths: '**/TEST-*.xml'
-          check_name: 'hideout-activitypub JUnit Test Report'
-
-      - name: Upload Coverage Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: 'hideout-activitypub.xml'
-          path: 'hideout-activitypub/build/reports/kover/hideout-activitypub.xml'
-
-  owl-unit-test:
-    needs:
-      - owl-setup
-      - change
-    if: github.event.pull_request.draft == false && needs.change.outputs.owl == 'true'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT }}
-
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          cache-read-only: false
-          gradle-home-cache-cleanup: true
-
-      - name: Unit Test
-        working-directory: owl
-        run: ./gradlew :koverXmlReport --rerun-tasks
+        run: ./gradlew :owl:test
 
       - name: JUnit Test Report
         uses: mikepenz/action-junit-report@v4
@@ -321,40 +115,6 @@ jobs:
           report_paths: '**/TEST-*.xml'
           check_name: 'owl JUnit Test Report'
 
-      - name: Upload Coverage Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: 'owl.xml'
-          path: 'owl/build/reports/kover/owl.xml'
-
-  coverage:
-    if: always() && (needs.change.outputs.core == 'true' || needs.change.outputs.activitypub == 'true' || needs.change.outputs.mastodon == 'true' || needs.change.outputs.owl == 'true')
-    needs:
-      - change
-      - hideout-core-unit-test
-      - hideout-mastodon-unit-test
-      - hideout-activitypub-unit-test
-      - owl-unit-test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Coverage Report
-        uses: actions/download-artifact@v4
-        with:
-          path: 'hideout-core/build/reports/kover'
-
-      - name: Report Coverage
-        uses: madrapps/jacoco-report@v1.7.1
-        with:
-          paths: |
-            ${{ github.workspace }}/hideout-core/build/reports/kover/hideout-core.xml/hideout-core.xml,
-            ${{ github.workspace }}/hideout-core/build/reports/kover/hideout-mastodon.xml/hideout-mastodon.xml,
-            ${{ github.workspace }}/hideout-core/build/reports/kover/hideout-activitypub.xml/hideout-activitypub.xml
-            ${{ github.workspace }}/hideout-core/build/reports/kover/owl.xml/owl.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: Code Coverage
-          update-comment: true
-          min-coverage-overall: 50
-          min-coverage-changed-files: 80
 
   lint:
     if: always() && (needs.change.outputs.core == 'true' || needs.change.outputs.activitypub == 'true' || needs.change.outputs.mastodon == 'true' || needs.change.outputs.owl == 'true')
@@ -387,12 +147,7 @@ jobs:
           gradle-home-cache-cleanup: true
 
       - name: Lint
-        run: ./gradlew :hideout-core:detektMain :hideout-mastodon:detektMain :hideout-activitypub:detektMain
-
-      - name: owl Lint
-        if: always()
-        working-directory: owl
-        run: ./gradlew :detektMain
+        run: ./gradlew :hideout:detekt :owl:detektMain
 
       - name: Auto Commit
         if: ${{ always() }}
