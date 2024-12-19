@@ -17,11 +17,10 @@
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
-rootProject.name = "hideout"
+rootProject.name = "hideout-root"
 
-includeBuild("hideout-core")
-includeBuild("hideout-mastodon")
-includeBuild("hideout-activitypub")
+includeBuild("hideout")
+includeBuild("owl")
 
 dependencyResolutionManagement {
     repositories {
@@ -34,3 +33,4 @@ dependencyResolutionManagement {
         }
     }
 }
+
