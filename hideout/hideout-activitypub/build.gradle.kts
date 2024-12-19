@@ -2,21 +2,93 @@ import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.detekt)
     alias(libs.plugins.kover)
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.kotlin.spring)
 }
 
+apply {
+    plugin("io.spring.dependency-management")
+}
 
+group = "dev.usbharu"
+version = "1.0-SNAPSHOT"
+
+repositories {
+    mavenCentral()
+    maven {
+        url = uri("https://git.usbharu.dev/api/packages/usbharu/maven")
+    }
+}
+
+dependencies {
+    testImplementation(kotlin("test"))
+    detektPlugins(libs.detekt.formatting)
+    implementation(project(":hideout-core"))
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation(libs.bundles.jackson)
+    implementation(libs.owl.producer.api)
+    implementation(libs.owl.producer.embedded)
+    implementation(libs.owl.common.serialize.jackson)
+}
 
 tasks.test {
     useJUnitPlatform()
 }
+kotlin {
+    jvmToolchain(21)
+}
 
+
+configurations {
+    matching { it.name == "detekt" }.all {
+        resolutionStrategy.eachDependency {
+            if (requested.group == "org.jetbrains.kotlin") {
+                useVersion(io.gitlab.arturbosch.detekt.getSupportedKotlinVersion())
+            }
+        }
+    }
+    all {
+        exclude("org.apache.logging.log4j", "log4j-slf4j2-impl")
+    }
+}
 
 tasks {
-
-withType<Test> {
+    withType<io.gitlab.arturbosch.detekt.Detekt> {
+        exclude("**/generated/**")
+        setSource("src/main/kotlin")
+        exclude("build/")
+        configureEach {
+            exclude("**/org/koin/ksp/generated/**", "**/generated/**")
+        }
+    }
+    withType<io.gitlab.arturbosch.detekt.DetektCreateBaselineTask>() {
+        configureEach {
+            exclude("**/org/koin/ksp/generated/**", "**/generated/**")
+        }
+    }
+    withType<Test> {
         useJUnitPlatform()
     }
+}
+
+
+project.gradle.taskGraph.whenReady {
+    if (this.hasTask(":koverGenerateArtifact")) {
+        val task = this.allTasks.find { it.name == "test" }
+        val verificationTask = task as VerificationTask
+        verificationTask.ignoreFailures = true
+    }
+}
+
+detekt {
+    parallel = true
+    config.setFrom(files("../detekt.yml"))
+    buildUponDefaultConfig = true
+    basePath = "${rootDir.absolutePath}/src/main/kotlin"
+    autoCorrect = true
 }
 
 kover {
