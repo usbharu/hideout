@@ -64,7 +64,5 @@ class ExposedApplicationRepositoryTest : AbstractRepositoryTest(Applications) {
             .rowAtStartPoint()
             .value(Applications.id.name).isEqualTo(application.applicationId.id)
             .value(Applications.name.name).isEqualTo(application.name.name)
-
-
     }
 }

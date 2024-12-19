@@ -16,17 +16,17 @@
 
 package util
 //
-//import dev.usbharu.hideout.core.infrastructure.springframework.httpsignature.HttpSignatureUser
-//import dev.usbharu.httpsignature.common.HttpHeaders
-//import dev.usbharu.httpsignature.common.HttpMethod
-//import dev.usbharu.httpsignature.common.HttpRequest
-//import org.springframework.security.core.context.SecurityContext
-//import org.springframework.security.core.context.SecurityContextHolder
-//import org.springframework.security.test.context.support.WithSecurityContextFactory
-//import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken
-//import java.net.URL
+// import dev.usbharu.hideout.core.infrastructure.springframework.httpsignature.HttpSignatureUser
+// import dev.usbharu.httpsignature.common.HttpHeaders
+// import dev.usbharu.httpsignature.common.HttpMethod
+// import dev.usbharu.httpsignature.common.HttpRequest
+// import org.springframework.security.core.context.SecurityContext
+// import org.springframework.security.core.context.SecurityContextHolder
+// import org.springframework.security.test.context.support.WithSecurityContextFactory
+// import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken
+// import java.net.URL
 //
-//class WithMockHttpSignatureSecurityContextFactory :
+// class WithMockHttpSignatureSecurityContextFactory :
 //    WithSecurityContextFactory<WithMockHttpSignature> {
 //
 //    private val securityContextStrategy = SecurityContextHolder.getContextHolderStrategy()
@@ -52,4 +52,4 @@ package util
 //        emptyContext.authentication = preAuthenticatedAuthenticationToken
 //        return emptyContext
 //    }
-//}
+// }

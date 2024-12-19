@@ -98,7 +98,8 @@ class ExposedRelationshipRepositoryTest : AbstractRepositoryTest(Relationships) 
         }.launch()
 
         val relationship = Relationship.default(
-            ActorId(1), ActorId(2)
+            ActorId(1),
+            ActorId(2)
         )
 
         repository.save(relationship)
@@ -280,7 +281,8 @@ class ExposedRelationshipRepositoryTest : AbstractRepositoryTest(Relationships) 
         }.launch()
 
         val relationship = Relationship.default(
-            ActorId(1), ActorId(2)
+            ActorId(1),
+            ActorId(2)
         )
 
         change.withSuspend {
@@ -292,7 +294,6 @@ class ExposedRelationshipRepositoryTest : AbstractRepositoryTest(Relationships) 
             .rowAtStartPoint()
             .value(Relationships.actorId.name).isEqualTo(relationship.actorId.id)
             .value(Relationships.targetActorId.name).isEqualTo(relationship.targetActorId.id)
-
     }
 
     @Test
@@ -364,7 +365,9 @@ class ExposedRelationshipRepositoryTest : AbstractRepositoryTest(Relationships) 
         )
 
         val actual = repository.findByActorIdsAndTargetIdAndBlocking(
-            listOf(ActorId(1), ActorId(4)), ActorId(3), blocking = true
+            listOf(ActorId(1), ActorId(4)),
+            ActorId(3),
+            blocking = true
         )
 
         assertContentEquals(expected, actual)
@@ -382,7 +385,9 @@ class ExposedRelationshipRepositoryTest : AbstractRepositoryTest(Relationships) 
         )
 
         val actual2 = repository.findByActorIdsAndTargetIdAndBlocking(
-            listOf(ActorId(1), ActorId(4)), ActorId(3), blocking = false
+            listOf(ActorId(1), ActorId(4)),
+            ActorId(3),
+            blocking = false
         )
 
         assertContentEquals(expected2, actual2)
@@ -412,7 +417,8 @@ class ExposedRelationshipRepositoryTest : AbstractRepositoryTest(Relationships) 
                 muting = true,
                 followRequesting = true,
                 mutingFollowRequest = false
-            ), Relationship(
+            ),
+            Relationship(
                 actorId = ActorId(1),
                 targetActorId = ActorId(4),
                 following = false,
@@ -424,7 +430,9 @@ class ExposedRelationshipRepositoryTest : AbstractRepositoryTest(Relationships) 
         )
 
         val actual = repository.findByActorIdAndTargetIdsAndFollowing(
-            ActorId(1), listOf(ActorId(2), ActorId(3), ActorId(4)), following = true
+            ActorId(1),
+            listOf(ActorId(2), ActorId(3), ActorId(4)),
+            following = true
         )
 
         assertContentEquals(expected, actual)
@@ -442,7 +450,9 @@ class ExposedRelationshipRepositoryTest : AbstractRepositoryTest(Relationships) 
         )
 
         val actual2 = repository.findByActorIdAndTargetIdsAndFollowing(
-            ActorId(1), listOf(ActorId(2), ActorId(3), ActorId(4)), following = false
+            ActorId(1),
+            listOf(ActorId(2), ActorId(3), ActorId(4)),
+            following = false
         )
 
         assertContentEquals(expected2, actual2)

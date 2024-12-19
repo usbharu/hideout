@@ -46,12 +46,10 @@ allprojects {
 subprojects {
     apply {
         plugin(rootProject.libs.plugins.kotlin.jvm.get().pluginId)
-        plugin(rootProject.libs.plugins.detekt.get().pluginId)
     }
 
     dependencies {
         testImplementation(kotlin("test"))
-        detektPlugins(rootProject.libs.detekt.formatting)
     }
 }
 
@@ -61,7 +59,6 @@ tasks {
     }
     withType<io.gitlab.arturbosch.detekt.Detekt> {
         exclude("**/generated/**")
-        setSource("src/main/kotlin")
         exclude("build/")
         configureEach {
             exclude("**/org/koin/ksp/generated/**", "**/generated/**")
@@ -82,6 +79,7 @@ dependencies {
     implementation(project(":hideout-core"))
     implementation(project(":hideout-mastodon"))
     implementation(project(":hideout-activitypub"))
+    detektPlugins(rootProject.libs.detekt.formatting)
 }
 
 springBoot {
@@ -104,6 +102,6 @@ detekt {
     parallel = true
     config.setFrom(files("../detekt.yml"))
     buildUponDefaultConfig = true
-    basePath = "${rootDir.absolutePath}/src/main/kotlin"
+    source.setFrom(files(subprojects.map { "${it.projectDir}/src/main/kotlin" }))
     autoCorrect = true
 }

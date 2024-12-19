@@ -22,7 +22,6 @@ import dev.usbharu.hideout.core.infrastructure.exposedrepository.Instance as Ins
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ExposedInstanceRepositoryTest : AbstractRepositoryTest(InstanceTable) {
 
-
     @Test
     fun save_idが同じレコードがない場合はinsertされる() = runTest {
         ExposedInstanceRepository().save(
@@ -76,7 +75,6 @@ class ExposedInstanceRepositoryTest : AbstractRepositoryTest(InstanceTable) {
                 )
             }
         }.launch()
-
 
         ExposedInstanceRepository().save(
             Instance(
@@ -252,7 +250,6 @@ class ExposedInstanceRepositoryTest : AbstractRepositoryTest(InstanceTable) {
             .changeOfDeletionOnTable(InstanceTable.tableName)
             .rowAtStartPoint()
             .value(InstanceTable.id.name).isEqualTo(1)
-
     }
 
     companion object {
@@ -272,4 +269,3 @@ class ExposedInstanceRepositoryTest : AbstractRepositoryTest(InstanceTable) {
         }
     }
 }
-

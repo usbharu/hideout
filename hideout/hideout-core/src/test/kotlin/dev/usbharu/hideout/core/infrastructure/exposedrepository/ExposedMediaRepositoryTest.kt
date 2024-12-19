@@ -14,7 +14,6 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import dev.usbharu.hideout.core.domain.model.media.Media as EntityMedia
 
-
 class ExposedMediaRepositoryTest : AbstractRepositoryTest(Media) {
     @Test
     fun save_idが同じレコードが存在しないとinsert() = runTest {

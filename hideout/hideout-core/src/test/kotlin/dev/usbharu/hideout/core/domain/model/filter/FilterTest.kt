@@ -36,10 +36,10 @@ class FilterTest {
                         FilterKeywordKeyword("keyword"),
                         FilterMode.NONE
                     )
-                ), userDetail
+                ),
+                userDetail
             )
         }
-
     }
 
     @Test
@@ -60,7 +60,6 @@ class FilterTest {
         )
 
         kotlin.test.assertEquals("(hoge)", filter.compileFilter().pattern)
-
     }
 
     @Test
@@ -81,7 +80,6 @@ class FilterTest {
         )
 
         kotlin.test.assertEquals("\\b(hoge)\\b", filter.compileFilter().pattern)
-
     }
 
     @Test
@@ -102,7 +100,6 @@ class FilterTest {
         )
 
         kotlin.test.assertEquals("(hoge)", filter.compileFilter().pattern)
-
     }
 
     @Test
@@ -133,7 +130,5 @@ class FilterTest {
         )
 
         kotlin.test.assertEquals("\\b(hoge)\\b|(hoge)|(hoge)", filter.compileFilter().pattern)
-
     }
 }
-

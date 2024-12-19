@@ -217,7 +217,6 @@ class FilterTest {
             .andExpect { status { isOk() } }
     }
 
-
     @Test
     fun `apiV2FiltersIdGet read_filters権限で取得できる`() {
         mockMvc

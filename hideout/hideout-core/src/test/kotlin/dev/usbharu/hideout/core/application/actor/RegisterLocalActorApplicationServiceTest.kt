@@ -73,6 +73,4 @@ class RegisterLocalActorApplicationServiceTest {
             service.execute(RegisterLocalActor("test", "password"), Anonymous)
         }
     }
-
-
 }

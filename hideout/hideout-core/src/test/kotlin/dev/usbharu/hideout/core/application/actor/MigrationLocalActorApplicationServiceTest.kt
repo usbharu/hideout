@@ -57,7 +57,8 @@ class MigrationLocalActorApplicationServiceTest {
     fun fromのactorが見つからなかったら失敗() = runTest {
         val userDetail = UserDetail.create(
             UserDetailId(1),
-            ActorId(1), UserDetailHashedPassword
+            ActorId(1),
+            UserDetailHashedPassword
                 ("")
         )
         whenever(userDetailRepository.findById(UserDetailId(1))).doReturn(userDetail)
@@ -73,7 +74,8 @@ class MigrationLocalActorApplicationServiceTest {
     fun toのactorが見つからなかったら失敗() = runTest {
         val userDetail = UserDetail.create(
             UserDetailId(1),
-            ActorId(1), UserDetailHashedPassword
+            ActorId(1),
+            UserDetailHashedPassword
                 ("")
         )
         whenever(actorRepository.findById(ActorId(1))).doReturn(TestActorFactory.create(1))
@@ -102,7 +104,8 @@ class MigrationLocalActorApplicationServiceTest {
         val to = TestActorFactory.create(2)
         val userDetail = UserDetail.create(
             UserDetailId(1),
-            ActorId(1), UserDetailHashedPassword
+            ActorId(1),
+            UserDetailHashedPassword
                 ("")
         )
         whenever(actorRepository.findById(ActorId(1))).doReturn(from)
@@ -136,7 +139,8 @@ class MigrationLocalActorApplicationServiceTest {
         val to = TestActorFactory.create(2)
         val userDetail = UserDetail.create(
             UserDetailId(1),
-            ActorId(1), UserDetailHashedPassword
+            ActorId(1),
+            UserDetailHashedPassword
                 ("")
         )
 

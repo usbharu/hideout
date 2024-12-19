@@ -34,17 +34,26 @@ class UserDeleteFilterApplicationServiceTest {
     @Test
     fun フィルターを削除できる() = runTest {
         val filter = Filter(
-            FilterId(1), UserDetailId(1), FilterName("filter"), setOf(FilterContext.HOME), FilterAction.HIDE, setOf(
+            FilterId(1),
+            UserDetailId(1),
+            FilterName("filter"),
+            setOf(FilterContext.HOME),
+            FilterAction.HIDE,
+            setOf(
                 FilterKeyword(
-                    FilterKeywordId(1), FilterKeywordKeyword("aaa"), FilterMode.NONE
+                    FilterKeywordId(1),
+                    FilterKeywordKeyword("aaa"),
+                    FilterMode.NONE
                 )
             )
         )
         whenever(filterRepository.findByFilterId(FilterId(1))).doReturn(filter)
 
         service.execute(
-            DeleteFilter(1), LocalUser(
-                ActorId(1), UserDetailId(1),
+            DeleteFilter(1),
+            LocalUser(
+                ActorId(1),
+                UserDetailId(1),
                 Acct("test", "example.com")
             )
         )
@@ -56,8 +65,10 @@ class UserDeleteFilterApplicationServiceTest {
     fun フィルターが見つからない場合失敗() = runTest {
         assertThrows<IllegalArgumentException> {
             service.execute(
-                DeleteFilter(1), LocalUser(
-                    ActorId(1), UserDetailId(1),
+                DeleteFilter(1),
+                LocalUser(
+                    ActorId(1),
+                    UserDetailId(1),
                     Acct("test", "example.com")
                 )
             )
@@ -67,9 +78,16 @@ class UserDeleteFilterApplicationServiceTest {
     @Test
     fun フィルターのオーナー以外は失敗() = runTest {
         val filter = Filter(
-            FilterId(1), UserDetailId(1), FilterName("filter"), setOf(FilterContext.HOME), FilterAction.HIDE, setOf(
+            FilterId(1),
+            UserDetailId(1),
+            FilterName("filter"),
+            setOf(FilterContext.HOME),
+            FilterAction.HIDE,
+            setOf(
                 FilterKeyword(
-                    FilterKeywordId(1), FilterKeywordKeyword("aaa"), FilterMode.NONE
+                    FilterKeywordId(1),
+                    FilterKeywordKeyword("aaa"),
+                    FilterMode.NONE
                 )
             )
         )
@@ -77,8 +95,10 @@ class UserDeleteFilterApplicationServiceTest {
 
         assertThrows<PermissionDeniedException> {
             service.execute(
-                DeleteFilter(1), LocalUser(
-                    ActorId(3), UserDetailId(3),
+                DeleteFilter(1),
+                LocalUser(
+                    ActorId(3),
+                    UserDetailId(3),
                     Acct("test", "example.com")
                 )
             )

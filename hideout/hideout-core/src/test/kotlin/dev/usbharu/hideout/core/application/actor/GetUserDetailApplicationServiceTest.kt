@@ -44,7 +44,8 @@ class GetUserDetailApplicationServiceTest {
     fun userDetailを取得できる() = runTest {
         whenever(userDetailRepository.findById(UserDetailId(1))).doReturn(
             UserDetail.create(
-                UserDetailId(1), ActorId(1),
+                UserDetailId(1),
+                ActorId(1),
                 UserDetailHashedPassword("")
             )
         )
@@ -56,7 +57,6 @@ class GetUserDetailApplicationServiceTest {
 
     @Test
     fun userDetailが存在しない場合失敗() = runTest {
-
         assertThrows<IllegalArgumentException> {
             service.execute(GetUserDetail(2), Anonymous)
         }
@@ -66,7 +66,8 @@ class GetUserDetailApplicationServiceTest {
     fun userDetailが存在するけどActorが存在しない場合はInternalServerException() = runTest {
         whenever(userDetailRepository.findById(UserDetailId(2))).doReturn(
             UserDetail.create(
-                UserDetailId(2), ActorId(2),
+                UserDetailId(2),
+                ActorId(2),
                 UserDetailHashedPassword("")
             )
         )

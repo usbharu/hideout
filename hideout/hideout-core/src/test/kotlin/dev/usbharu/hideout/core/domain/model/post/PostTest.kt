@@ -134,7 +134,6 @@ class PostTest {
         val actor = TestActorFactory.create(id = post.actorId.id, publicKey = ActorPublicKey(""))
         post.setVisibility(Visibility.UNLISTED, actor)
         assertEmpty(post)
-
     }
 
     @Test
@@ -392,9 +391,7 @@ class PostTest {
     fun `create 作成できる`() {
         val actor = TestActorFactory.create(suspend = true)
 
-
         assertDoesNotThrow {
-
             Post.create(
                 id = PostId(1),
                 actorId = actor.id,
@@ -422,9 +419,7 @@ class PostTest {
     fun `create 作成できる2`() {
         val actor = TestActorFactory.create(suspend = true)
 
-
         assertDoesNotThrow {
-
             Post.create(
                 id = PostId(1),
                 actorId = actor.id,
@@ -467,7 +462,6 @@ class PostTest {
         )
 
         assertEquals(PostContent.empty.emojiIds, post.emojiIds)
-
     }
 
     @Test
@@ -532,7 +526,6 @@ class PostTest {
         )
 
         assertEquals(emptyList(), post.mediaIds)
-
     }
 
     @Test
@@ -563,7 +556,6 @@ class PostTest {
 
     @Test
     fun `delete deleteイベントが発生する`() {
-
         val actor = TestActorFactory.create()
         val post = TestPostFactory.create(deleted = false, actorId = actor.id.id)
         post.delete(actor)
@@ -572,7 +564,6 @@ class PostTest {
 
     @Test
     fun `delete すでにdeletedがtrueの時deleteイベントは発生しない`() {
-
         val actor = TestActorFactory.create()
         val post = TestPostFactory.create(deleted = true, actorId = actor.id.id)
         post.delete(actor)

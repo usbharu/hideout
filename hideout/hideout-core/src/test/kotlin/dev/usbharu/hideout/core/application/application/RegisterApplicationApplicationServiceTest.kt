@@ -60,8 +60,9 @@ class RegisterApplicationApplicationServiceTest {
         argumentCaptor<RegisteredClient> {
             verify(registeredClientRepository).save(capture())
             val first = allValues.first()
-            assertThat(first.tokenSettings.accessTokenTimeToLive).isGreaterThanOrEqualTo(Duration.ofSeconds(31536000000))
-
+            assertThat(
+                first.tokenSettings.accessTokenTimeToLive
+            ).isGreaterThanOrEqualTo(Duration.ofSeconds(31536000000))
         }
     }
 
@@ -78,7 +79,6 @@ class RegisterApplicationApplicationServiceTest {
             verify(registeredClientRepository).save(capture())
             val first = allValues.first()
             assertThat(first.authorizationGrantTypes).contains(AuthorizationGrantType.REFRESH_TOKEN)
-
         }
     }
 }

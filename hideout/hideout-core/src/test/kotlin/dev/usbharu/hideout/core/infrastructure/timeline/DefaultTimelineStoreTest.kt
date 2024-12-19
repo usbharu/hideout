@@ -117,7 +117,8 @@ class DefaultTimelineStoreTest {
 
         whenever(filterDomainService.apply(post, FilterContext.HOME, filters)).doReturn(
             FilteredPost(
-                post, listOf(
+                post,
+                listOf(
                     FilterResult(filters.first(), "aaa")
                 )
             )
@@ -331,7 +332,8 @@ class DefaultTimelineStoreTest {
 
         whenever(filterDomainService.apply(post, FilterContext.HOME, filters)).doReturn(
             FilteredPost(
-                post, listOf(
+                post,
+                listOf(
                     FilterResult(filters.first(), "aaa")
                 )
             )
@@ -404,7 +406,8 @@ class DefaultTimelineStoreTest {
 
         whenever(filterDomainService.apply(post, FilterContext.HOME, filters)).doReturn(
             FilteredPost(
-                post, listOf(
+                post,
+                listOf(
                     FilterResult(filters.first(), "aaa")
                 )
             )
@@ -477,7 +480,8 @@ class DefaultTimelineStoreTest {
 
         whenever(filterDomainService.apply(post, FilterContext.HOME, filters)).doReturn(
             FilteredPost(
-                post, listOf(
+                post,
+                listOf(
                     FilterResult(filters.first(), "aaa")
                 )
             )

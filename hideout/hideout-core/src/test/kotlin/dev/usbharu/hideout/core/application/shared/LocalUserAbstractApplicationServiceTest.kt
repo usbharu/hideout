@@ -14,7 +14,6 @@ class LocalUserAbstractApplicationServiceTest {
         val logger = LoggerFactory.getLogger(javaClass)
         val value = object : LocalUserAbstractApplicationService<Unit, Unit>(TestTransaction, logger) {
             override suspend fun internalExecute(command: Unit, principal: LocalUser) {
-
             }
         }
 

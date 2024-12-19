@@ -46,7 +46,6 @@ class UpdateLocalNoteApplicationServiceTest {
     @Spy
     val transaction = TestTransaction
 
-
     @Test
     fun Post主はPostを編集できる() = runTest {
         val post = TestPostFactory.create()
@@ -54,7 +53,8 @@ class UpdateLocalNoteApplicationServiceTest {
         whenever(postRepository.findById(post.id)).doReturn(post)
         whenever(userDetailRepository.findById(UserDetailId(1))).doReturn(
             UserDetail.create(
-                UserDetailId(1), post.actorId,
+                UserDetailId(1),
+                post.actorId,
                 UserDetailHashedPassword("")
             )
         )
@@ -63,7 +63,8 @@ class UpdateLocalNoteApplicationServiceTest {
         whenever(postContentFactoryImpl.create(eq("test"))).doReturn(content)
 
         service.execute(
-            UpdateLocalNote(post.id.id, null, "test", false, emptyList()), LocalUser(
+            UpdateLocalNote(post.id.id, null, "test", false, emptyList()),
+            LocalUser(
                 post.actorId,
                 UserDetailId(1),
                 Acct("test", "example.com")
@@ -75,7 +76,8 @@ class UpdateLocalNoteApplicationServiceTest {
             val first = allValues.first()
 
             assertEquals(
-                content, first.content
+                content,
+                first.content
             )
         }
     }
@@ -84,9 +86,11 @@ class UpdateLocalNoteApplicationServiceTest {
     fun postが見つからない場合失敗() = runTest {
         assertThrows<IllegalArgumentException> {
             service.execute(
-                UpdateLocalNote(1, null, "test", false, emptyList()), LocalUser(
+                UpdateLocalNote(1, null, "test", false, emptyList()),
+                LocalUser(
                     ActorId(1),
-                    UserDetailId(1), Acct("test", "example.com")
+                    UserDetailId(1),
+                    Acct("test", "example.com")
                 )
             )
         }
@@ -98,9 +102,11 @@ class UpdateLocalNoteApplicationServiceTest {
 
         assertThrows<PermissionDeniedException> {
             service.execute(
-                UpdateLocalNote(1, null, "test", false, emptyList()), LocalUser(
+                UpdateLocalNote(1, null, "test", false, emptyList()),
+                LocalUser(
                     ActorId(1),
-                    UserDetailId(1), Acct("test", "example.com")
+                    UserDetailId(1),
+                    Acct("test", "example.com")
                 )
             )
         }
@@ -112,9 +118,11 @@ class UpdateLocalNoteApplicationServiceTest {
 
         assertThrows<InternalServerException> {
             service.execute(
-                UpdateLocalNote(1, null, "test", false, emptyList()), LocalUser(
+                UpdateLocalNote(1, null, "test", false, emptyList()),
+                LocalUser(
                     ActorId(1),
-                    UserDetailId(1), Acct("test", "example.com")
+                    UserDetailId(1),
+                    Acct("test", "example.com")
                 )
             )
         }
@@ -130,15 +138,16 @@ class UpdateLocalNoteApplicationServiceTest {
         whenever(postRepository.findById(post.id)).doReturn(post)
         whenever(userDetailRepository.findById(UserDetailId(1))).doReturn(
             UserDetail.create(
-                UserDetailId(1), post.actorId,
+                UserDetailId(1),
+                post.actorId,
                 UserDetailHashedPassword("")
             )
         )
 
-
         assertThrows<InternalServerException> {
             service.execute(
-                UpdateLocalNote(post.id.id, null, "test", false, emptyList()), LocalUser(
+                UpdateLocalNote(post.id.id, null, "test", false, emptyList()),
+                LocalUser(
                     post.actorId,
                     UserDetailId(1),
                     Acct("test", "example.com")

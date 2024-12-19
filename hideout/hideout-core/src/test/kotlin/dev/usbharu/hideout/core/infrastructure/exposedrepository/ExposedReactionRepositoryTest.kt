@@ -34,7 +34,6 @@ class ExposedReactionRepositoryTest : AbstractRepositoryTest(Reactions) {
     @Mock
     lateinit var domainEventPublisher: DomainEventPublisher
 
-
     @Test
     fun save_idが同じレコードがなければinsert() = runTest {
         dbSetup(to = dataSource) {
@@ -231,7 +230,6 @@ class ExposedReactionRepositoryTest : AbstractRepositoryTest(Reactions) {
         val actual = repository.findById(ReactionId(1))
 
         assertEquals(expected, actual)
-
     }
 
     private fun assertEquals(
@@ -285,12 +283,16 @@ class ExposedReactionRepositoryTest : AbstractRepositoryTest(Reactions) {
 
         val actual1 = repository.existsByPostIdAndActorIdAndCustomEmojiIdOrUnicodeEmoji(
             PostId(1),
-            ActorId(1), CustomEmojiId
-                (1), "❤"
+            ActorId(1),
+            CustomEmojiId
+                (1),
+            "❤"
         )
         val actual2 = repository.existsByPostIdAndActorIdAndCustomEmojiIdOrUnicodeEmoji(
             PostId(3),
-            ActorId(2), null, "❤"
+            ActorId(2),
+            null,
+            "❤"
         )
 
         assertTrue(actual1)
@@ -311,12 +313,16 @@ class ExposedReactionRepositoryTest : AbstractRepositoryTest(Reactions) {
 
         val actual1 = repository.existsByPostIdAndActorIdAndCustomEmojiIdOrUnicodeEmoji(
             PostId(3),
-            ActorId(1), CustomEmojiId
-                (1), "❤"
+            ActorId(1),
+            CustomEmojiId
+                (1),
+            "❤"
         )
         val actual2 = repository.existsByPostIdAndActorIdAndCustomEmojiIdOrUnicodeEmoji(
             PostId(2),
-            ActorId(2), null, "❤"
+            ActorId(2),
+            null,
+            "❤"
         )
 
         assertFalse(actual1)
@@ -371,8 +377,10 @@ class ExposedReactionRepositoryTest : AbstractRepositoryTest(Reactions) {
         val actual =
             repository.findByPostIdAndActorIdAndCustomEmojiIdOrUnicodeEmoji(
                 PostId(1),
-                ActorId(1), CustomEmojiId
-                    (1), "❤"
+                ActorId(1),
+                CustomEmojiId
+                    (1),
+                "❤"
             )
 
         assertEquals(expected, actual)
@@ -383,8 +391,10 @@ class ExposedReactionRepositoryTest : AbstractRepositoryTest(Reactions) {
         assertNull(
             repository.findByPostIdAndActorIdAndCustomEmojiIdOrUnicodeEmoji(
                 PostId(1),
-                ActorId(1), CustomEmojiId
-                    (1), "❤"
+                ActorId(1),
+                CustomEmojiId
+                    (1),
+                "❤"
             )
         )
     }
@@ -397,9 +407,13 @@ class ExposedReactionRepositoryTest : AbstractRepositoryTest(Reactions) {
         repository.save(
             Reaction.create(
                 ReactionId(1),
-                PostId(1), ActorId
-                    (1), CustomEmojiId
-                    (1), UnicodeEmoji("❤"), Instant.now
+                PostId(1),
+                ActorId
+                    (1),
+                CustomEmojiId
+                    (1),
+                UnicodeEmoji("❤"),
+                Instant.now
                     ()
             )
         )
@@ -423,9 +437,13 @@ class ExposedReactionRepositoryTest : AbstractRepositoryTest(Reactions) {
 
         val reaction = Reaction(
             ReactionId(1),
-            PostId(1), ActorId
-                (1), CustomEmojiId
-                (1), UnicodeEmoji("❤"), Instant.now
+            PostId(1),
+            ActorId
+                (1),
+            CustomEmojiId
+                (1),
+            UnicodeEmoji("❤"),
+            Instant.now
                 ()
         )
         reaction.delete()

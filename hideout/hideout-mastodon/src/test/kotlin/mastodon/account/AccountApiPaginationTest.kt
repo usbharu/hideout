@@ -99,7 +99,6 @@ class AccountApiPaginationTest {
 
         val value = jacksonObjectMapper().readValue(content, object : TypeReference<List<Status>>() {})
 
-
         assertThat(value).isEmpty()
     }
 

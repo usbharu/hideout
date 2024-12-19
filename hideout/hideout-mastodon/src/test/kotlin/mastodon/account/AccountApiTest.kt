@@ -293,10 +293,8 @@ class AccountApiTest {
             .asyncDispatch()
             .andExpect { status { isOk() } }
 
-
         val alreadyFollow =
             relationshipRepository.findByActorIdAndTargetId(ActorId(3733363), ActorId(37335363))?.following
-
 
         assertThat(alreadyFollow).isTrue()
     }

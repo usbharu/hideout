@@ -43,7 +43,6 @@ class ActorsTest {
     fun moveToに自分自身が設定された場合moveイベントが発生し更新される() {
         val actor = TestActorFactory.create(publicKey = ActorPublicKey(""))
 
-
         actor.setMoveTo(ActorId(100))
 
         assertContainsEvent(actor, ActorEvent.MOVE.eventName)

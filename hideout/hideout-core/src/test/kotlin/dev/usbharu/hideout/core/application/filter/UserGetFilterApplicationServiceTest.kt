@@ -34,17 +34,26 @@ class UserGetFilterApplicationServiceTest {
     @Test
     fun オーナーのみ取得できる() = runTest {
         val filter = Filter(
-            FilterId(1), UserDetailId(1), FilterName("filter"), setOf(FilterContext.HOME), FilterAction.HIDE, setOf(
+            FilterId(1),
+            UserDetailId(1),
+            FilterName("filter"),
+            setOf(FilterContext.HOME),
+            FilterAction.HIDE,
+            setOf(
                 FilterKeyword(
-                    FilterKeywordId(1), FilterKeywordKeyword("aaa"), FilterMode.NONE
+                    FilterKeywordId(1),
+                    FilterKeywordKeyword("aaa"),
+                    FilterMode.NONE
                 )
             )
         )
         whenever(filterRepository.findByFilterId(FilterId(1))).doReturn(filter)
 
         service.execute(
-            GetFilter(1), LocalUser(
-                ActorId(1), UserDetailId(1),
+            GetFilter(1),
+            LocalUser(
+                ActorId(1),
+                UserDetailId(1),
                 Acct("test", "example.com")
             )
         )
@@ -53,19 +62,27 @@ class UserGetFilterApplicationServiceTest {
     @Test
     fun オーナー以外は失敗() = runTest {
         val filter = Filter(
-            FilterId(1), UserDetailId(1), FilterName("filter"), setOf(FilterContext.HOME), FilterAction.HIDE, setOf(
+            FilterId(1),
+            UserDetailId(1),
+            FilterName("filter"),
+            setOf(FilterContext.HOME),
+            FilterAction.HIDE,
+            setOf(
                 FilterKeyword(
-                    FilterKeywordId(1), FilterKeywordKeyword("aaa"), FilterMode.NONE
+                    FilterKeywordId(1),
+                    FilterKeywordKeyword("aaa"),
+                    FilterMode.NONE
                 )
             )
         )
         whenever(filterRepository.findByFilterId(FilterId(1))).doReturn(filter)
 
-
         assertThrows<PermissionDeniedException> {
             service.execute(
-                GetFilter(1), LocalUser(
-                    ActorId(3), UserDetailId(3),
+                GetFilter(1),
+                LocalUser(
+                    ActorId(3),
+                    UserDetailId(3),
                     Acct("test", "example.com")
                 )
             )
@@ -76,8 +93,10 @@ class UserGetFilterApplicationServiceTest {
     fun フィルターが見つからない場合失敗() = runTest {
         assertThrows<IllegalArgumentException> {
             service.execute(
-                GetFilter(1), LocalUser(
-                    ActorId(3), UserDetailId(3),
+                GetFilter(1),
+                LocalUser(
+                    ActorId(3),
+                    UserDetailId(3),
                     Acct("test", "example.com")
                 )
             )

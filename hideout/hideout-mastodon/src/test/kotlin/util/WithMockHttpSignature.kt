@@ -17,12 +17,12 @@
 package util
 
 //
-//@Target(AnnotationTarget.FUNCTION, AnnotationTarget.TYPE)
-//@Retention(AnnotationRetention.RUNTIME)
-//@Inherited
-//@MustBeDocumented
-//@WithSecurityContext(factory = WithMockHttpSignatureSecurityContextFactory::class)
-//annotation class WithMockHttpSignature(
+// @Target(AnnotationTarget.FUNCTION, AnnotationTarget.TYPE)
+// @Retention(AnnotationRetention.RUNTIME)
+// @Inherited
+// @MustBeDocumented
+// @WithSecurityContext(factory = WithMockHttpSignatureSecurityContextFactory::class)
+// annotation class WithMockHttpSignature(
 //    @get:AliasFor(
 //        annotation = WithSecurityContext::class
 //    ) val setupBefore: TestExecutionEvent = TestExecutionEvent.TEST_METHOD,
@@ -32,4 +32,4 @@ package util
 //    val id: Long = 1234L,
 //    val url: String = "https://example.com/inbox",
 //    val method: String = "GET"
-//)
+// )

@@ -52,7 +52,6 @@ class AppTest {
     @Autowired
     lateinit var jdbcOperations: JdbcOperations
 
-
     val registeredClientRepository: JdbcRegisteredClientRepository by lazy {
         JdbcRegisteredClientRepository(
             jdbcOperations
@@ -85,7 +84,6 @@ class AppTest {
 
         val clientId = objectMapper().readTree(contentAsString)["client_id"].asText()
 
-
         val registeredClient = registeredClientRepository.findByClientId(clientId)
 
         assertNotNull(registeredClient)
@@ -114,7 +112,6 @@ class AppTest {
             .contentAsString
 
         val clientId = objectMapper().readTree(contentAsString)["client_id"].asText()
-
 
         val registeredClient = registeredClientRepository.findByClientId(clientId)
 

@@ -93,9 +93,12 @@ class ExposedActorInstanceRelationshipRepositoryTest : AbstractRepositoryTest(Ac
             }
         }.launch()
 
-
         val actorInstanceRelationship = ActorInstanceRelationship(
-            actorId = ActorId(1), instanceId = InstanceId(1), blocking = false, muting = false, doNotSendPrivate = false
+            actorId = ActorId(1),
+            instanceId = InstanceId(1),
+            blocking = false,
+            muting = false,
+            doNotSendPrivate = false
         )
 
         repository.save(actorInstanceRelationship)
@@ -173,9 +176,12 @@ class ExposedActorInstanceRelationshipRepositoryTest : AbstractRepositoryTest(Ac
             }
         }.launch()
 
-
         val actorInstanceRelationship = ActorInstanceRelationship(
-            actorId = ActorId(1), instanceId = InstanceId(1), blocking = false, muting = false, doNotSendPrivate = false
+            actorId = ActorId(1),
+            instanceId = InstanceId(1),
+            blocking = false,
+            muting = false,
+            doNotSendPrivate = false
         )
 
         repository.save(actorInstanceRelationship)
@@ -201,7 +207,11 @@ class ExposedActorInstanceRelationshipRepositoryTest : AbstractRepositoryTest(Ac
         }.launch()
 
         val actorInstanceRelationship = ActorInstanceRelationship(
-            actorId = ActorId(1), instanceId = InstanceId(1), blocking = false, muting = false, doNotSendPrivate = false
+            actorId = ActorId(1),
+            instanceId = InstanceId(1),
+            blocking = false,
+            muting = false,
+            doNotSendPrivate = false
         )
 
         change.setStartPointNow()
@@ -228,7 +238,11 @@ class ExposedActorInstanceRelationshipRepositoryTest : AbstractRepositoryTest(Ac
         }.launch()
 
         val expected = ActorInstanceRelationship(
-            actorId = ActorId(1), instanceId = InstanceId(1), blocking = true, muting = true, doNotSendPrivate = true
+            actorId = ActorId(1),
+            instanceId = InstanceId(1),
+            blocking = true,
+            muting = true,
+            doNotSendPrivate = true
         )
 
         val actual = repository.findByActorIdAndInstanceId(ActorId(1), InstanceId(1))
@@ -249,13 +263,16 @@ class ExposedActorInstanceRelationshipRepositoryTest : AbstractRepositoryTest(Ac
 
     @Test
     fun save_ドメインイベントがパブリッシュされる() = runTest {
-
         dbSetup(to = dataSource) {
             execute(disableReferenceIntegrityConstraints)
         }.launch()
 
         val actorInstanceRelationship = ActorInstanceRelationship(
-            actorId = ActorId(1), instanceId = InstanceId(1), blocking = false, muting = false, doNotSendPrivate = false
+            actorId = ActorId(1),
+            instanceId = InstanceId(1),
+            blocking = false,
+            muting = false,
+            doNotSendPrivate = false
         )
         actorInstanceRelationship.block()
         repository.save(actorInstanceRelationship)
@@ -267,7 +284,6 @@ class ExposedActorInstanceRelationshipRepositoryTest : AbstractRepositoryTest(Ac
 
     @Test
     fun delete_ドメインイベントがパブリッシュされる() = runTest {
-
         dbSetup(to = dataSource) {
             execute(disableReferenceIntegrityConstraints)
             insertInto(ActorInstanceRelationships.tableName) {
@@ -277,7 +293,11 @@ class ExposedActorInstanceRelationshipRepositoryTest : AbstractRepositoryTest(Ac
         }.launch()
 
         val actorInstanceRelationship = ActorInstanceRelationship(
-            actorId = ActorId(1), instanceId = InstanceId(1), blocking = false, muting = false, doNotSendPrivate = false
+            actorId = ActorId(1),
+            instanceId = InstanceId(1),
+            blocking = false,
+            muting = false,
+            doNotSendPrivate = false
         )
         actorInstanceRelationship.block()
         repository.delete(actorInstanceRelationship)

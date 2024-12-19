@@ -175,7 +175,12 @@ class ExposedUserDetailRepositoryTest : AbstractRepositoryTest(UserDetails) {
         }.launch()
 
         val userDetail = UserDetail(
-            UserDetailId(1), ActorId(1), UserDetailHashedPassword("VeeeeeeeeeeeeeryStrongPassword"), false, null, null
+            UserDetailId(1),
+            ActorId(1),
+            UserDetailHashedPassword("VeeeeeeeeeeeeeryStrongPassword"),
+            false,
+            null,
+            null
         )
 
         change.withSuspend {
@@ -267,7 +272,12 @@ class ExposedUserDetailRepositoryTest : AbstractRepositoryTest(UserDetails) {
             insertInto("public.user_details") {
                 columns(UserDetails.columns)
                 values(
-                    1, 1, "$2a$10\$EBj3lstVOv0wz3CxLpzYJu8FFrUJ2MPJW9Vlklyg.bfGEOn5sqIwm", false, null, null
+                    1,
+                    1,
+                    "$2a$10\$EBj3lstVOv0wz3CxLpzYJu8FFrUJ2MPJW9Vlklyg.bfGEOn5sqIwm",
+                    false,
+                    null,
+                    null
                 )
                 values(
                     2,
@@ -353,7 +363,8 @@ class ExposedUserDetailRepositoryTest : AbstractRepositoryTest(UserDetails) {
     }
 
     private fun assertEquals(
-        actual: UserDetail?, expect: UserDetail
+        actual: UserDetail?,
+        expect: UserDetail
     ) {
         assertNotNull(actual)
         kotlin.test.assertEquals(expect, actual)

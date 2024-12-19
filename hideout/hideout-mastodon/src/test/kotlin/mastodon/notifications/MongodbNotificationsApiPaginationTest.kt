@@ -40,11 +40,11 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.context.WebApplicationContext
 
+// @Sql("/sql/notification/test-notifications.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 @SpringBootTest(classes = [SpringApplication::class], properties = ["hideout.use-mongodb=true"])
 @AutoConfigureMockMvc
 @Transactional
 @Sql("/sql/actors.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
-//@Sql("/sql/notification/test-notifications.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_CLASS)
 class MongodbNotificationsApiPaginationTest {
     @Autowired
     private lateinit var context: WebApplicationContext
@@ -106,7 +106,6 @@ class MongodbNotificationsApiPaginationTest {
 
         Assertions.assertThat(value.first().id).isEqualTo("25")
         Assertions.assertThat(value.last().id).isEqualTo("1")
-
     }
 
     @Test

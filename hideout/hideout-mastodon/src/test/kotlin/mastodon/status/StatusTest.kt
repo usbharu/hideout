@@ -59,7 +59,6 @@ class StatusTest {
 
     private lateinit var mockMvc: MockMvc
 
-
     @BeforeEach
     fun setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(context)
@@ -218,7 +217,6 @@ class StatusTest {
             Reactions.leftJoin(CustomEmojis).selectAll().where { Reactions.postId eq 1 and (Reactions.actorId eq 1) }
                 .single()
                 .toReaction()
-
     }
 
     companion object {

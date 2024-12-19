@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.jdbc.Sql
 import org.springframework.transaction.annotation.Transactional
 
-
 @Sql("/sql/actors.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql("/sql/relationships.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Transactional

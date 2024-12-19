@@ -71,7 +71,6 @@ class ExposedTimelineRepositoryTest : AbstractRepositoryTest(Timelines) {
                 columns(Timelines.columns)
                 values(1, 1, "test-timeline", "PUBLIC", true)
             }
-
         }.launch()
         val timeline = Timeline(
             id = TimelineId(1),
@@ -100,7 +99,6 @@ class ExposedTimelineRepositoryTest : AbstractRepositoryTest(Timelines) {
                 columns(Timelines.columns)
                 values(1, 1, "test-timeline", "PUBLIC", true)
             }
-
         }.launch()
         val timeline = Timeline(
             id = TimelineId(1),
@@ -150,7 +148,11 @@ class ExposedTimelineRepositoryTest : AbstractRepositoryTest(Timelines) {
         val actual = repository.findById(TimelineId(1))
 
         val expected = Timeline(
-            TimelineId(1), UserDetailId(1), TimelineName("test-timeline"), TimelineVisibility.PUBLIC, true
+            TimelineId(1),
+            UserDetailId(1),
+            TimelineName("test-timeline"),
+            TimelineVisibility.PUBLIC,
+            true
         )
 
         assertEquals(expected, actual)
@@ -199,8 +201,10 @@ class ExposedTimelineRepositoryTest : AbstractRepositoryTest(Timelines) {
         )
 
         timeline.setVisibility(
-            TimelineVisibility.PUBLIC, UserDetail.create(
-                UserDetailId(1), ActorId(1),
+            TimelineVisibility.PUBLIC,
+            UserDetail.create(
+                UserDetailId(1),
+                ActorId(1),
                 UserDetailHashedPassword("aaaaaa"),
             )
         )
@@ -224,7 +228,6 @@ class ExposedTimelineRepositoryTest : AbstractRepositoryTest(Timelines) {
                 columns(Timelines.columns)
                 values(1, 1, "test-timeline", "PUBLIC", true)
             }
-
         }.launch()
         val timeline = Timeline(
             id = TimelineId(1),
@@ -235,8 +238,10 @@ class ExposedTimelineRepositoryTest : AbstractRepositoryTest(Timelines) {
         )
 
         timeline.setVisibility(
-            TimelineVisibility.PUBLIC, UserDetail.create(
-                UserDetailId(1), ActorId(1),
+            TimelineVisibility.PUBLIC,
+            UserDetail.create(
+                UserDetailId(1),
+                ActorId(1),
                 UserDetailHashedPassword("aaaaaa"),
             )
         )

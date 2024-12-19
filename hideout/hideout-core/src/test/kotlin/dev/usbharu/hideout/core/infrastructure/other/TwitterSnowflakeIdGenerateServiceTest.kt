@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test
 class TwitterSnowflakeIdGenerateServiceTest {
     @Test
     fun noDuplicateTest() = runBlocking {
-
         val mutableListOf = coroutineScope {
             (1..10000).map {
                 async {

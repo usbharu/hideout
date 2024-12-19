@@ -16,10 +16,10 @@
 
 package util
 
-//class WithHttpSignatureSecurityContextFactory(
+// class WithHttpSignatureSecurityContextFactory(
 //    private val actorRepository: ActorRepository,
 //    private val transaction: Transaction
-//) : WithSecurityContextFactory<WithHttpSignature> {
+// ) : WithSecurityContextFactory<WithHttpSignature> {
 //
 //    private val securityContextStrategy = SecurityContextHolder.getContextHolderStrategy()
 //
@@ -49,4 +49,4 @@ package util
 //        return@runBlocking emptyContext
 //    }
 //
-//}
+// }

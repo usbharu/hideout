@@ -62,12 +62,14 @@ class UserAcceptFollowRequestApplicationServiceTest {
         whenever(actorRepository.findById(ActorId(2))).doReturn(TestActorFactory.create(id = 2))
         whenever(relationshipRepository.findByActorIdAndTargetId(ActorId(1), ActorId(2))).doReturn(
             Relationship(
-                actorId = ActorId(1), targetActorId = ActorId
+                actorId = ActorId(1),
+                targetActorId = ActorId
                     (2),
                 following = false,
                 blocking = false,
                 muting = false,
-                followRequesting = true, mutingFollowRequest = false
+                followRequesting = true,
+                mutingFollowRequest = false
             )
         )
         service.execute(AcceptFollowRequest(1), LocalUser(ActorId(2), UserDetailId(2), Acct("test", "example.com")))

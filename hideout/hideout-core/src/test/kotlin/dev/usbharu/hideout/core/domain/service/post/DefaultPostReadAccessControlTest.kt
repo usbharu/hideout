@@ -111,7 +111,6 @@ class DefaultPostReadAccessControlTest {
             )
         )
 
-
         val actual = service.isAllow(
             TestPostFactory.create(actorId = 1, visibility = Visibility.FOLLOWERS),
             LocalUser(ActorId(2), UserDetailId(2), Acct("test", "example.com"))
@@ -149,7 +148,6 @@ class DefaultPostReadAccessControlTest {
                 mutingFollowRequest = false
             )
         )
-
 
         val actual = service.isAllow(
             TestPostFactory.create(actorId = 1, visibility = Visibility.FOLLOWERS),
@@ -234,7 +232,6 @@ class DefaultPostReadAccessControlTest {
         assertAll(actual.map { { assertEquals(1, it.actorId.id) } })
     }
 
-
     @Test
     fun areAllows_PUBLICとUNLISTEDは見れる() = runTest {
         whenever(
@@ -265,7 +262,9 @@ class DefaultPostReadAccessControlTest {
         val actual = service.areAllows(postList, LocalUser(ActorId(1), UserDetailId(1), Acct("test", "example.com")))
 
         assertEquals(2, actual.size)
-        kotlin.test.assertTrue(actual.all { it.visibility == Visibility.PUBLIC || it.visibility == Visibility.UNLISTED })
+        kotlin.test.assertTrue(
+            actual.all { it.visibility == Visibility.PUBLIC || it.visibility == Visibility.UNLISTED }
+        )
     }
 
     @Test
@@ -298,7 +297,9 @@ class DefaultPostReadAccessControlTest {
         val actual = service.areAllows(postList, Anonymous)
 
         assertEquals(2, actual.size)
-        kotlin.test.assertTrue(actual.all { it.visibility == Visibility.PUBLIC || it.visibility == Visibility.UNLISTED })
+        kotlin.test.assertTrue(
+            actual.all { it.visibility == Visibility.PUBLIC || it.visibility == Visibility.UNLISTED }
+        )
     }
 
     @Test

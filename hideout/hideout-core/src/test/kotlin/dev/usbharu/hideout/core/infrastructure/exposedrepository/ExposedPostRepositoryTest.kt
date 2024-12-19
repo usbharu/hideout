@@ -385,7 +385,6 @@ class ExposedPostRepositoryTest : AbstractRepositoryTest(Posts) {
         assertEquals(expect.mediaIds, actual.mediaIds)
         assertEquals(expect.visibleActors, actual.visibleActors)
         assertEquals(expect.hide, actual.hide)
-
     }
 
     @Test
@@ -972,7 +971,6 @@ class ExposedPostRepositoryTest : AbstractRepositoryTest(Posts) {
 
     @Test
     fun saveAll_idがある場合はinsertなければupdateされる() = runTest {
-
         dbSetup(to = dataSource) {
             execute(disableReferenceIntegrityConstraints)
             insertInto("public.posts") {
@@ -1152,7 +1150,10 @@ class ExposedPostRepositoryTest : AbstractRepositoryTest(Posts) {
                 repostId = 1,
                 moveTo = 1
             )
-        ).map { it.checkUpdate();it }
+        ).map {
+            it.checkUpdate()
+            it
+        }
 
         repository.saveAll(pl)
 
@@ -1185,7 +1186,6 @@ class ExposedPostRepositoryTest : AbstractRepositoryTest(Posts) {
                     false,
                     null
                 )
-
             }
         }.launch()
 

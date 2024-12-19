@@ -118,7 +118,6 @@ class ExposedCustomEmojiRepositoryTest : AbstractRepositoryTest(CustomEmojis) {
 
     @Test
     fun delete_削除される() = runTest {
-
         dbSetup(to = dataSource) {
             execute(disableReferenceIntegrityConstraints)
             insertInto(CustomEmojis.tableName) {
@@ -144,7 +143,6 @@ class ExposedCustomEmojiRepositoryTest : AbstractRepositoryTest(CustomEmojis) {
             null,
             Instant.parse("2020-01-01T00:00:00Z")
         )
-
 
         change.withSuspend {
             ExposedCustomEmojiRepository().delete(customEmoji)
@@ -245,7 +243,8 @@ class ExposedCustomEmojiRepositoryTest : AbstractRepositoryTest(CustomEmojis) {
                 URI.create("https://example.com/1"),
                 null,
                 Instant.parse("2020-01-01T00:00:00Z")
-            ), CustomEmoji(
+            ),
+            CustomEmoji(
                 CustomEmojiId(2),
                 "emoji2",
                 Domain("example.com"),
@@ -306,7 +305,8 @@ class ExposedCustomEmojiRepositoryTest : AbstractRepositoryTest(CustomEmojis) {
                 URI.create("https://example.com/1"),
                 null,
                 Instant.parse("2020-01-01T00:00:00Z")
-            ), CustomEmoji(
+            ),
+            CustomEmoji(
                 CustomEmojiId(3),
                 "emoji3",
                 Domain("example.com"),

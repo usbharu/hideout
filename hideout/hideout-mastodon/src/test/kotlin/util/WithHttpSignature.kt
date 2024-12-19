@@ -16,16 +16,16 @@
 
 package util
 
-//@Target(AnnotationTarget.FUNCTION, AnnotationTarget.TYPE)
-//@Retention(AnnotationRetention.RUNTIME)
-//@Inherited
-//@MustBeDocumented
-//@WithSecurityContext(factory = WithHttpSignatureSecurityContextFactory::class)
-//annotation class WithHttpSignature(
+// @Target(AnnotationTarget.FUNCTION, AnnotationTarget.TYPE)
+// @Retention(AnnotationRetention.RUNTIME)
+// @Inherited
+// @MustBeDocumented
+// @WithSecurityContext(factory = WithHttpSignatureSecurityContextFactory::class)
+// annotation class WithHttpSignature(
 //    @get:AliasFor(
 //        annotation = WithSecurityContext::class
 //    ) val setupBefore: TestExecutionEvent = TestExecutionEvent.TEST_METHOD,
 //    val keyId: String = "https://example.com/users/test-user#pubkey",
 //    val url: String = "https://example.com/inbox",
 //    val method: String = "GET"
-//)
+// )

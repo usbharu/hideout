@@ -78,7 +78,6 @@ class FilterDomainServiceTest {
             setOf(FilterKeyword(FilterKeywordId(1), FilterKeywordKeyword("test"), FilterMode.NONE))
         )
 
-
         val filteredPosts = FilterDomainService().applyAll(postList, FilterContext.HOME, filters = listOf(filter))
 
         assertEquals(5, filteredPosts.size)

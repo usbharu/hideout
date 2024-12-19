@@ -172,7 +172,8 @@ class ExposedFilterRepositoryTest : AbstractRepositoryTest(Filters) {
     }
 
     private fun assertEquals(
-        expected: Filter, actual: Filter?
+        expected: Filter,
+        actual: Filter?
     ) {
         kotlin.test.assertEquals(expected, actual)
         assertNotNull(actual)
@@ -183,7 +184,6 @@ class ExposedFilterRepositoryTest : AbstractRepositoryTest(Filters) {
         assertEquals(expected.filterKeywords.size, actual.filterKeywords.size)
         assertContentEquals(expected.filterKeywords, actual.filterKeywords.asIterable())
     }
-
 
     @Test
     fun findByFilterKeywordId_指定された条件で存在しないとnull() = runTest {
@@ -249,11 +249,17 @@ class ExposedFilterRepositoryTest : AbstractRepositoryTest(Filters) {
 
         val expected = listOf(
             Filter(
-                FilterId(1), UserDetailId(1), FilterName("name"), setOf(FilterContext.PUBLIC), FilterAction.WARN, setOf(
+                FilterId(1),
+                UserDetailId(1),
+                FilterName("name"),
+                setOf(FilterContext.PUBLIC),
+                FilterAction.WARN,
+                setOf(
                     FilterKeyword(FilterKeywordId(1), FilterKeywordKeyword("keyword"), FilterMode.REGEX),
                     FilterKeyword(FilterKeywordId(3), FilterKeywordKeyword("keyword3"), FilterMode.REGEX)
                 )
-            ), Filter(
+            ),
+            Filter(
                 FilterId(2),
                 UserDetailId(1),
                 FilterName("name2"),
@@ -262,14 +268,14 @@ class ExposedFilterRepositoryTest : AbstractRepositoryTest(Filters) {
                 setOf(
                     FilterKeyword(FilterKeywordId(2), FilterKeywordKeyword("keyword2"), FilterMode.REGEX)
                 )
-            ), Filter(
+            ),
+            Filter(
                 FilterId(3),
                 UserDetailId(1),
                 FilterName("name3"),
                 setOf(FilterContext.PUBLIC),
                 FilterAction.HIDE,
-                setOf(
-                )
+                setOf()
             )
         )
 

@@ -69,12 +69,13 @@ abstract class AbstractRepositoryTest(private val exposedTable: org.jetbrains.ex
             hikariConfig.transactionIsolation = "TRANSACTION_READ_UNCOMMITTED"
             dataSource = HikariDataSource(hikariConfig)
 
-
             flyway = Flyway.configure().cleanDisabled(false).dataSource(dataSource).load()
-            Database.connect(dataSource, databaseConfig = DatabaseConfig {
-                defaultMaxAttempts = 1
-
-            })
+            Database.connect(
+                dataSource,
+                databaseConfig = DatabaseConfig {
+                    defaultMaxAttempts = 1
+                }
+            )
             flyway.clean()
             flyway.migrate()
         }

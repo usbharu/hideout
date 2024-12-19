@@ -20,7 +20,8 @@ class LocalActorMigrationCheckDomainServiceImplTest {
         val to = TestActorFactory.create()
         val userDetail = UserDetail.create(
             UserDetailId(1),
-            ActorId(1), UserDetailHashedPassword("")
+            ActorId(1),
+            UserDetailHashedPassword("")
         )
         userDetail.lastMigration = Instant.now().minusSeconds(100)
 
@@ -33,12 +34,12 @@ class LocalActorMigrationCheckDomainServiceImplTest {
 
     @Test
     fun 自分自身に引っ越しできない(): Unit = runTest {
-
         val from = TestActorFactory.create()
         val to = TestActorFactory.create()
         val userDetail = UserDetail.create(
             UserDetailId(1),
-            ActorId(1), UserDetailHashedPassword("")
+            ActorId(1),
+            UserDetailHashedPassword("")
         )
         val localActorMigrationCheckDomainServiceImpl = LocalActorMigrationCheckDomainServiceImpl()
 
@@ -49,12 +50,12 @@ class LocalActorMigrationCheckDomainServiceImplTest {
 
     @Test
     fun 引越し先が引っ越している場合は引っ越しできない(): Unit = runTest {
-
         val from = TestActorFactory.create()
         val to = TestActorFactory.create(moveTo = 100)
         val userDetail = UserDetail.create(
             UserDetailId(1),
-            ActorId(1), UserDetailHashedPassword("")
+            ActorId(1),
+            UserDetailHashedPassword("")
         )
         val localActorMigrationCheckDomainServiceImpl = LocalActorMigrationCheckDomainServiceImpl()
 
@@ -69,7 +70,8 @@ class LocalActorMigrationCheckDomainServiceImplTest {
         val to = TestActorFactory.create()
         val userDetail = UserDetail.create(
             UserDetailId(1),
-            ActorId(1), UserDetailHashedPassword("")
+            ActorId(1),
+            UserDetailHashedPassword("")
         )
         val localActorMigrationCheckDomainServiceImpl = LocalActorMigrationCheckDomainServiceImpl()
 
@@ -84,7 +86,8 @@ class LocalActorMigrationCheckDomainServiceImplTest {
         val to = TestActorFactory.create(alsoKnownAs = setOf(ActorId(100)))
         val userDetail = UserDetail.create(
             UserDetailId(1),
-            ActorId(1), UserDetailHashedPassword("")
+            ActorId(1),
+            UserDetailHashedPassword("")
         )
         val localActorMigrationCheckDomainServiceImpl = LocalActorMigrationCheckDomainServiceImpl()
 
@@ -99,7 +102,8 @@ class LocalActorMigrationCheckDomainServiceImplTest {
         val to = TestActorFactory.create(alsoKnownAs = setOf(from.id, ActorId(100)))
         val userDetail = UserDetail.create(
             UserDetailId(1),
-            ActorId(1), UserDetailHashedPassword("")
+            ActorId(1),
+            UserDetailHashedPassword("")
         )
         val localActorMigrationCheckDomainServiceImpl = LocalActorMigrationCheckDomainServiceImpl()
 
@@ -114,7 +118,8 @@ class LocalActorMigrationCheckDomainServiceImplTest {
         val to = TestActorFactory.create(alsoKnownAs = setOf(from.id, ActorId(100)))
         val userDetail = UserDetail.create(
             UserDetailId(1),
-            ActorId(1), UserDetailHashedPassword("")
+            ActorId(1),
+            UserDetailHashedPassword("")
         )
         userDetail.lastMigration = Instant.now().minus(31.days.toJavaDuration())
         val localActorMigrationCheckDomainServiceImpl = LocalActorMigrationCheckDomainServiceImpl()

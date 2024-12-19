@@ -162,7 +162,9 @@ class SpringAccountApi(
     override suspend fun apiV1AccountsPost(accountsCreateRequest: AccountsCreateRequest): ResponseEntity<Unit> =
         super.apiV1AccountsPost(accountsCreateRequest)
 
-    override suspend fun apiV1AccountsUpdateCredentialsPatch(updateCredentials: UpdateCredentials?): ResponseEntity<Account> =
+    override suspend fun apiV1AccountsUpdateCredentialsPatch(
+        updateCredentials: UpdateCredentials?
+    ): ResponseEntity<Account> =
         super.apiV1AccountsUpdateCredentialsPatch(updateCredentials)
 
     override suspend fun apiV1AccountsVerifyCredentialsGet(): ResponseEntity<CredentialAccount> {

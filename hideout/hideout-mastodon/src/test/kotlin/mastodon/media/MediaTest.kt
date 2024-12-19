@@ -57,11 +57,8 @@ class MediaTest {
 
     @Test
     fun メディアをアップロードできる() = runTest {
-
-
         mockMvc
             .multipart("/api/v1/media") {
-
                 file(
                     MockMultipartFile(
                         "file",
@@ -78,11 +75,8 @@ class MediaTest {
 
     @Test
     fun write_mediaスコープでメディアをアップロードできる() = runTest {
-
-
         mockMvc
             .multipart("/api/v1/media") {
-
                 file(
                     MockMultipartFile(
                         "file",
@@ -99,11 +93,8 @@ class MediaTest {
 
     @Test
     fun 権限がないと403() = runTest {
-
-
         mockMvc
             .multipart("/api/v1/media") {
-
                 file(
                     MockMultipartFile(
                         "file",
@@ -125,5 +116,4 @@ class MediaTest {
             flyway.migrate()
         }
     }
-
 }

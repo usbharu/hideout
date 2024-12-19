@@ -63,7 +63,10 @@ class ExposedTimelineRelationshipRepositoryTest : AbstractRepositoryTest(Timelin
         }.launch()
 
         val relationship = TimelineRelationship(
-            TimelineRelationshipId(1), TimelineId(1), ActorId(1), Visible.PUBLIC
+            TimelineRelationshipId(1),
+            TimelineId(1),
+            ActorId(1),
+            Visible.PUBLIC
         )
         ExposedTimelineRelationshipRepository().save(relationship)
 
@@ -125,7 +128,10 @@ class ExposedTimelineRelationshipRepositoryTest : AbstractRepositoryTest(Timelin
         }.launch()
 
         val relationship = TimelineRelationship(
-            TimelineRelationshipId(1), TimelineId(1), ActorId(1), Visible.PUBLIC
+            TimelineRelationshipId(1),
+            TimelineId(1),
+            ActorId(1),
+            Visible.PUBLIC
         )
         ExposedTimelineRelationshipRepository().save(relationship)
 
@@ -150,8 +156,10 @@ class ExposedTimelineRelationshipRepositoryTest : AbstractRepositoryTest(Timelin
 
         val timelineRelationship = TimelineRelationship(
             TimelineRelationshipId(1),
-            TimelineId(1), ActorId
-                (3), Visible.PUBLIC
+            TimelineId(1),
+            ActorId
+                (3),
+            Visible.PUBLIC
         )
 
         change.withSuspend {
@@ -176,7 +184,6 @@ class ExposedTimelineRelationshipRepositoryTest : AbstractRepositoryTest(Timelin
             }
             execute(enableReferenceIntegrityConstraints)
         }.launch()
-
 
         val findByActorId = ExposedTimelineRelationshipRepository().findByActorId(actorId = ActorId(3))
 

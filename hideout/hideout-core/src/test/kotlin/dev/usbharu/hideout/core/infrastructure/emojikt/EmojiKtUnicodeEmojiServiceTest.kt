@@ -11,6 +11,4 @@ class EmojiKtUnicodeEmojiServiceTest {
     fun 絵文字の判定ができる(s: String) {
         assertTrue(EmojiKtUnicodeEmojiService().isUnicodeEmoji(s))
     }
-
-
 }

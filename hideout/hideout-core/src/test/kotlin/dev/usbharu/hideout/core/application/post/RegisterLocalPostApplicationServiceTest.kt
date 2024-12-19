@@ -59,8 +59,11 @@ class RegisterLocalPostApplicationServiceTest {
         ).doReturn(post)
 
         service.execute(
-            RegisterLocalPost("content test", null, Visibility.PUBLIC, null, null, false, emptyList()), LocalUser(
-                ActorId(1), UserDetailId(1), Acct("test", "example.com")
+            RegisterLocalPost("content test", null, Visibility.PUBLIC, null, null, false, emptyList()),
+            LocalUser(
+                ActorId(1),
+                UserDetailId(1),
+                Acct("test", "example.com")
             )
         )
 
@@ -71,8 +74,11 @@ class RegisterLocalPostApplicationServiceTest {
     fun actorが見つからないと失敗() = runTest {
         assertThrows<InternalServerException> {
             service.execute(
-                RegisterLocalPost("content test", null, Visibility.PUBLIC, null, null, false, emptyList()), LocalUser(
-                    ActorId(1), UserDetailId(1), Acct("test", "example.com")
+                RegisterLocalPost("content test", null, Visibility.PUBLIC, null, null, false, emptyList()),
+                LocalUser(
+                    ActorId(1),
+                    UserDetailId(1),
+                    Acct("test", "example.com")
                 )
             )
         }
