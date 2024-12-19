@@ -42,7 +42,6 @@ out/
 /tomcat/
 /tomcat-e2e/
 /e2eTest.log
-/files/
 
 *.log
 /hideout-core/files/
@@ -51,4 +50,4 @@ out/
 /http-client.private.env.json
 **/logs/
 /hideout-mastodon/logs/
-/hideout-mastodon/files/
+**/files/

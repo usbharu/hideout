@@ -49,7 +49,11 @@ subprojects {
     }
 
     dependencies {
-        testImplementation(kotlin("test"))
+    }
+
+
+    kotlin {
+        jvmToolchain(21)
     }
 }
 
@@ -57,6 +61,12 @@ tasks {
     register("run") {
         dependsOn(gradle.includedBuild("hideout-core").task(":run"))
     }
+
+    getByName("test") {
+        dependsOn(subprojects.mapNotNull { it.tasks.findByName("test") })
+    }
+
+
     withType<io.gitlab.arturbosch.detekt.Detekt> {
         exclude("**/generated/**")
         exclude("build/")
@@ -70,9 +80,6 @@ tasks {
         }
     }
 
-    kotlin {
-        jvmToolchain(21)
-    }
 }
 
 dependencies {
