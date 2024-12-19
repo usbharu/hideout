@@ -89,12 +89,12 @@ class ActorInstanceRelationship(
 
     override fun toString(): String {
         return "ActorInstanceRelationship(" +
-                "actorId=$actorId, " +
-                "instanceId=$instanceId, " +
-                "blocking=$blocking, " +
-                "muting=$muting, " +
-                "doNotSendPrivate=$doNotSendPrivate" +
-                ")"
+            "actorId=$actorId, " +
+            "instanceId=$instanceId, " +
+            "blocking=$blocking, " +
+            "muting=$muting, " +
+            "doNotSendPrivate=$doNotSendPrivate" +
+            ")"
     }
 
     companion object {

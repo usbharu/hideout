@@ -52,16 +52,16 @@ class Media(
 
     override fun toString(): String {
         return "Media(" +
-                "id=$id, " +
-                "name=$name, " +
-                "remoteUrl=$remoteUrl, " +
-                "thumbnailUrl=$thumbnailUrl, " +
-                "type=$type, " +
-                "mimeType=$mimeType, " +
-                "blurHash=$blurHash, " +
-                "description=$description, " +
-                "actorId=$actorId, " +
-                "url=$url" +
-                ")"
+            "id=$id, " +
+            "name=$name, " +
+            "remoteUrl=$remoteUrl, " +
+            "thumbnailUrl=$thumbnailUrl, " +
+            "type=$type, " +
+            "mimeType=$mimeType, " +
+            "blurHash=$blurHash, " +
+            "description=$description, " +
+            "actorId=$actorId, " +
+            "url=$url" +
+            ")"
     }
 }

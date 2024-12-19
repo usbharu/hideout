@@ -37,8 +37,8 @@ class FilterResult(val filter: Filter, val matchedKeyword: String) {
 
     override fun toString(): String {
         return "FilterResult(" +
-                "filter=$filter, " +
-                "matchedKeyword='$matchedKeyword'" +
-                ")"
+            "filter=$filter, " +
+            "matchedKeyword='$matchedKeyword'" +
+            ")"
     }
 }

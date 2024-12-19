@@ -262,8 +262,8 @@ abstract class AbstractTimelineStore(private val idGenerateService: IdGenerateSe
         val actors =
             getActors(
                 timelineObjectList.map { it.postActorId } +
-                        timelineObjectList.mapNotNull { it.repostActorId } +
-                        timelineObjectList.mapNotNull { it.replyActorId }
+                    timelineObjectList.mapNotNull { it.repostActorId } +
+                    timelineObjectList.mapNotNull { it.replyActorId }
             )
 
         val postMap = posts.associate { post ->
@@ -272,7 +272,7 @@ abstract class AbstractTimelineStore(private val idGenerateService: IdGenerateSe
 
         val mediaMap = getMedias(
             posts.flatMap { it.mediaIds } +
-                    actors.mapNotNull { it.value.icon }
+                actors.mapNotNull { it.value.icon }
         )
 
         val reactions = getReactions(posts.map { it.id })

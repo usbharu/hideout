@@ -70,11 +70,11 @@ class HideoutUserDetails(
 
     override fun toString(): String {
         return "HideoutUserDetails(" +
-                "password='$password', " +
-                "username='$username', " +
-                "userDetailsId=$userDetailsId, " +
-                "authorities=$authorities" +
-                ")"
+            "password='$password', " +
+            "username='$username', " +
+            "userDetailsId=$userDetailsId, " +
+            "authorities=$authorities" +
+            ")"
     }
 
     companion object {

@@ -87,10 +87,10 @@ class ExposedRelationshipRepository(override val domainEventPublisher: DomainEve
     ): List<Relationship> = query {
         Relationships.selectAll().where {
             Relationships.actorId eq actorId.id and (
-                    Relationships.targetActorId inList targetIds.map {
-                        it.id
-                    }
-                    ) and (Relationships.following eq following)
+                Relationships.targetActorId inList targetIds.map {
+                    it.id
+                }
+                ) and (Relationships.following eq following)
         }.map { it.toRelationships() }
     }
 

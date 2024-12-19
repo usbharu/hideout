@@ -25,12 +25,12 @@ value class ActorPublicKey(val publicKey: String) {
         fun create(publicKey: PublicKey): ActorPublicKey {
             return ActorPublicKey(
                 "-----BEGIN PUBLIC KEY-----\n" +
-                        Base64
-                            .getEncoder()
-                            .encodeToString(publicKey.encoded)
-                            .chunked(64)
-                            .joinToString("\n") +
-                        "\n-----END PUBLIC KEY-----"
+                    Base64
+                        .getEncoder()
+                        .encodeToString(publicKey.encoded)
+                        .chunked(64)
+                        .joinToString("\n") +
+                    "\n-----END PUBLIC KEY-----"
             )
         }
     }

@@ -39,8 +39,8 @@ class FilteredPost(val post: Post, val filterResults: List<FilterResult>) {
 
     override fun toString(): String {
         return "FilteredPost(" +
-                "post=$post, " +
-                "filterResults=$filterResults" +
-                ")"
+            "post=$post, " +
+            "filterResults=$filterResults" +
+            ")"
     }
 }

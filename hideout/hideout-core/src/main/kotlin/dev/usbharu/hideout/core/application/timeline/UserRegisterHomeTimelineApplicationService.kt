@@ -41,9 +41,9 @@ class UserRegisterHomeTimelineApplicationService(
 ) : AbstractApplicationService<RegisterHomeTimeline, Unit>(transaction, logger) {
     override suspend fun internalExecute(command: RegisterHomeTimeline, principal: Principal) {
         val userDetail = (
-                userDetailRepository.findById(UserDetailId(command.userDetailId))
-                    ?: throw IllegalArgumentException("UserDetail ${command.userDetailId} not found.")
-                )
+            userDetailRepository.findById(UserDetailId(command.userDetailId))
+                ?: throw IllegalArgumentException("UserDetail ${command.userDetailId} not found.")
+            )
 
         val timeline = Timeline.create(
             TimelineId(idGenerateService.generateId()),

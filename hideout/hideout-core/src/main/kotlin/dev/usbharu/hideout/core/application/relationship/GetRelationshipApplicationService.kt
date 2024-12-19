@@ -47,14 +47,14 @@ class GetRelationshipApplicationService(
         val target = actorRepository.findById(targetId)
             ?: throw IllegalArgumentException("Actor ${command.targetActorId} not found.")
         val relationship = (
-                relationshipRepository.findByActorIdAndTargetId(actor.id, targetId)
-                    ?: dev.usbharu.hideout.core.domain.model.relationship.Relationship.default(actor.id, targetId)
-                )
+            relationshipRepository.findByActorIdAndTargetId(actor.id, targetId)
+                ?: dev.usbharu.hideout.core.domain.model.relationship.Relationship.default(actor.id, targetId)
+            )
 
         val relationship1 = (
-                relationshipRepository.findByActorIdAndTargetId(targetId, actor.id)
-                    ?: dev.usbharu.hideout.core.domain.model.relationship.Relationship.default(targetId, actor.id)
-                )
+            relationshipRepository.findByActorIdAndTargetId(targetId, actor.id)
+                ?: dev.usbharu.hideout.core.domain.model.relationship.Relationship.default(targetId, actor.id)
+            )
 
         val actorInstanceRelationship =
             actorInstanceRelationshipRepository.findByActorIdAndInstanceId(actor.id, target.instance)

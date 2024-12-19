@@ -54,7 +54,7 @@ class ExposedActorInstanceRelationshipRepository(override val domainEventPublish
         query {
             ActorInstanceRelationships.deleteWhere {
                 actorId eq actorInstanceRelationship.actorId.id and
-                        (instanceId eq actorInstanceRelationship.instanceId.instanceId)
+                    (instanceId eq actorInstanceRelationship.instanceId.instanceId)
             }
             onComplete {
                 update(actorInstanceRelationship)
@@ -70,7 +70,7 @@ class ExposedActorInstanceRelationshipRepository(override val domainEventPublish
             .selectAll()
             .where {
                 ActorInstanceRelationships.actorId eq actorId.id and
-                        (ActorInstanceRelationships.instanceId eq instanceId.instanceId)
+                    (ActorInstanceRelationships.instanceId eq instanceId.instanceId)
             }
             .limit(1)
             .singleOrNull()
