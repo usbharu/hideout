@@ -11,7 +11,7 @@ services:
       POSTGRES_DB: "hideout"
 
   mongodb:
-    image: mongo:7.0.14
+    image: mongo:8.0.4
     ports:
       - "27017:27017"
 
