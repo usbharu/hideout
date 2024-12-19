@@ -124,7 +124,7 @@ grpc-kotlin = ["grpc-kotlin-stub", "grpc-netty", "grpc-protobuf", "protobuf-kotl
 [plugins]
 
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-spring-boot = { id = "org.springframework.boot", version = "3.4.0" }
+spring-boot = { id = "org.springframework.boot", version = "3.4.1" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version = "0.8.3" }
