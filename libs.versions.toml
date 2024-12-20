@@ -67,7 +67,7 @@ blurhash = { module = "io.trbl:blurhash", version = "1.0.0" }
 
 aws-s3 = { module = "software.amazon.awssdk:s3", version = "2.27.22" }
 
-jsoup = { module = "org.jsoup:jsoup", version = "1.18.1" }
+jsoup = { module = "org.jsoup:jsoup", version = "1.18.3" }
 
 owasp-java-html-sanitizer = { module = "com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer", version = "20240325.1" }
 
