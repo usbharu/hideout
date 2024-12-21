@@ -74,7 +74,7 @@ jobs:
 
       - name: JUnit Test Report
         if: ${{ always() }}
-        uses: mikepenz/action-junit-report@v4
+        uses: mikepenz/action-junit-report@v5
         with:
           report_paths: '**/TEST-*.xml'
           check_name: 'hideout-core JUnit Test Report'
@@ -110,7 +110,7 @@ jobs:
 
       - name: JUnit Test Report
         if: ${{ always() }}
-        uses: mikepenz/action-junit-report@v4
+        uses: mikepenz/action-junit-report@v5
         with:
           report_paths: '**/TEST-*.xml'
           check_name: 'owl JUnit Test Report'
