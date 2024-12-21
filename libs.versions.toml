@@ -73,7 +73,7 @@ owasp-java-html-sanitizer = { module = "com.googlecode.owasp-java-html-sanitizer
 
 postgresql = { module = "org.postgresql:postgresql", version = "42.7.4" }
 
-imageio-webp = { module = "com.twelvemonkeys.imageio:imageio-webp", version = "3.11.0" }
+imageio-webp = { module = "com.twelvemonkeys.imageio:imageio-webp", version = "3.12.0" }
 
 thumbnailator = { module = "net.coobird:thumbnailator", version = "0.4.20" }
 
