@@ -93,7 +93,7 @@ protoc-gen-grpc-kotlin = { module = "io.grpc:protoc-gen-grpc-kotlin", version.re
 protobuf-kotlin = { module = "com.google.protobuf:protobuf-kotlin", version.ref = "protobuf" }
 protoc = { module = "com.google.protobuf:protoc", version.ref = "protobuf" }
 
-koin-bom = { module = "io.insert-koin:koin-bom", version = "3.5.6" }
+koin-bom = { module = "io.insert-koin:koin-bom", version = "4.0.0" }
 koin-core = { module = "io.insert-koin:koin-core" }
 
 log4j2-slf4j = { module = "org.apache.logging.log4j:log4j-slf4j2-impl", version = "2.24.3" }
