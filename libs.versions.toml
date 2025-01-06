@@ -3,7 +3,7 @@
 kotlin = "2.1.0"
 ktor = "2.3.13"
 exposed = "0.57.0"
-javacv-ffmpeg = "6.1.1-1.5.10"
+javacv-ffmpeg = "7.1-1.5.11"
 detekt = "1.23.7"
 coroutines = "1.10.1"
 swagger = "2.2.27"
