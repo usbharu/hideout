@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.spring.boot)
@@ -79,7 +81,11 @@ tasks {
             exclude("**/org/koin/ksp/generated/**", "**/generated/**")
         }
     }
-
+    named<BootJar>("bootJar") {
+        layered {
+            enabled.set(false)
+        }
+    }
 }
 
 dependencies {
