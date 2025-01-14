@@ -71,7 +71,7 @@ jsoup = { module = "org.jsoup:jsoup", version = "1.18.3" }
 
 owasp-java-html-sanitizer = { module = "com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer", version = "20240325.1" }
 
-postgresql = { module = "org.postgresql:postgresql", version = "42.7.4" }
+postgresql = { module = "org.postgresql:postgresql", version = "42.7.5" }
 
 imageio-webp = { module = "com.twelvemonkeys.imageio:imageio-webp", version = "3.12.0" }
 
